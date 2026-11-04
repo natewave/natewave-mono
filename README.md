@@ -1,17 +1,14 @@
 # Natewave Mono
 
-Natewave Mono is a monospaced coding font built from [Iosevka](https://github.com/be5invis/Iosevka) `v34.4.0` with one build plan, [`private-build-plans.toml`](private-build-plans.toml).
-
-Its choices trace to legibility research where research exists, and to named type-design practice where it doesn't:
+Natewave Mono is a monospaced coding font. Its choices trace to type-design practices and legibility research:
 
 - **Proportions:** a 0.6 em cell with a 0.545 em x-height and ascenders taller than capitals.
 - **Distinct glyphs:** look-alikes such as `0 O Ø`, `1 l I |` and `9 g q` are separated at their stroke ends.
 - **Weight:** a slightly heavier Regular for small screen sizes.
 - **Operators:** they share one axis, so `->`, `=>`, `<=` and `!=` read cleanly without ligatures. Ligatures are off by default and available on request.
 
-Most of the evidence comes from prose and letter-recognition studies; almost none tests code. The design notes below say where a choice is extrapolated or is only convention.
-
 ## Build
+The font is built from [Iosevka](https://github.com/be5invis/Iosevka) `v34.4.0` with one build plan, [`private-build-plans.toml`](private-build-plans.toml).
 
 Run these from the repository root in a POSIX shell (macOS or Linux terminal, WSL, or Git Bash):
 
@@ -22,7 +19,7 @@ cd Iosevka && npm install
 npm run build -- --jCmd=4 webfont-unhinted::NatewaveMono
 ```
 
-`Iosevka/` is a build checkout. Keep it out of commits with `echo "Iosevka/" >> .git/info/exclude`.
+`Iosevka/` is a build checkout; [`.gitignore`](.gitignore) keeps it out of commits.
 
 ### Prerequisites
 
@@ -127,6 +124,30 @@ font_family Natewave Mono
    - Don't use Iosevka's author name to promote this font, other than to acknowledge the contribution.
    - Iosevka declares no Reserved Font Name, and this family doesn't reuse "Iosevka" in its name.
 
+## Website
+
+[`site/index.html`](site/index.html) is a one-page specimen of the font, set in Natewave Mono itself. Its CSS and JavaScript are inline, and it makes no external requests. It's published with GitHub Pages at https://natewave.github.io/natewave-mono/.
+
+The font files on the page aren't committed; `.gitignore` excludes them. On every push to `main` that changes `site/`, the build plan or the workflow, [`.github/workflows/pages.yml`](.github/workflows/pages.yml) builds `webfont-unhinted::NatewaveMono` and adds:
+
+- `site/fonts/`: the four WOFF2 files and `OFL.txt`.
+- `site/download/NatewaveMono-TTF-Unhinted.zip`: the four unhinted TTFs and `OFL.txt` in a `NatewaveMono/` folder, for the Download button.
+
+The built files are cached with a key from the build plan and the workflow, so page-only changes skip the font build.
+
+**One-time setup:** in the repository's **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**. Then push, or run the workflow from the **Actions** tab.
+
+**Local preview:** after the build, run these from the repository root:
+
+```sh
+mkdir -p site/fonts
+cp Iosevka/dist/NatewaveMono/WOFF2-Unhinted/*.woff2 site/fonts/
+cp Iosevka/LICENSE.md site/fonts/OFL.txt
+python3 -m http.server --directory site 8000
+```
+
+Then open http://localhost:8000. The Download button needs the zip, which the workflow's packaging step builds.
+
 ## Design notes
 
 Evidence labels:
@@ -164,7 +185,7 @@ Limits of Iosevka `v34.4.0` that the plan can't fix:
 
 ### References
 
-Each source was read at least as an abstract.
+Each source was read at least as an abstract by an AI agent.
 
 - Arditi, A., & Cho, J. (2005). Serifs and font legibility. *Vision Research, 45*(23), 2926–2933. https://doi.org/10.1016/j.visres.2005.06.013
 - Beier, S., & Larson, K. (2010). Design improvements for frequently misrecognized letters. *Information Design Journal, 18*(2), 118–137. https://doi.org/10.1075/idj.18.2.03bei

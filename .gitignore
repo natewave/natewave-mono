@@ -1,0 +1,4 @@
+# Build checkout and generated binaries: built from private-build-plans.toml, never committed.
+/Iosevka/
+/site/fonts/
+/site/download/
