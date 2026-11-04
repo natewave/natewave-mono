@@ -1,0 +1,115 @@
+# Natewave Mono: Iosevka v34.4.0 build plan. Rationale and references are in README.md.
+
+[buildPlans.NatewaveMono]
+family = "Natewave Mono"
+spacing = "fontconfig-mono"  # one cell per glyph; fontconfig sees "mono"; keeps opt-in dlig
+serifs = "sans"              # serifs alone don't change legibility (Arditi & Cho 2005)
+noCvSs = false               # keep cv##/ss## alternates; best font varies per reader (Wallace et al. 2022)
+
+[buildPlans.NatewaveMono.variants.design]
+# 0 O o Ø (O, o and Ø have no variant)
+zero = "oval-long-dotted"      # dot keeps 0 apart from Ø; oval body unlike O
+# 1 l I | i ! ¦ (! has no variant)
+one = "base-long-top-serif"    # flag + foot: unlike l, I and |
+l = "tailed-serifed"           # distinct terminal (Fiset et al. 2008; Bernard et al. 2016)
+capital-i = "serifed"          # full bars: unlike l, 1 and |
+i = "serifed-semi-tailed"      # widened narrow letter (Beier & Larson 2010)
+j = "serifed"
+bar = "natural-slope"
+# 5 S $
+five = "upright-arched-serifless"
+capital-s = "serifless"
+dollar = "through"             # through-bar: unlike S
+# 2 Z 7
+two = "curly-neck-serifless"   # curved neck: unlike Z
+capital-z = "straight-serifless"
+seven = "straight-serifless"
+# 8 B 3
+eight = "crossing"
+capital-b = "standard-serifless"
+three = "flat-top-serifless"   # flat top: unlike 8 and B
+# 6 b G
+six = "straight-bar"
+b = "toothed-serifless"
+capital-g = "toothed-serifless-hooked"
+# 9 g q
+nine = "straight-bar"
+g = "double-storey"            # breaks the g/q/y descender group (Bouma, via Bernard et al. 2016)
+q = "straight-serifless"
+# rn/m, cl/d, vv/w, u v y
+r = "base-serifed"             # foot fills the cell (Beier & Larson 2010)
+m = "serifless"
+c = "serifless"
+d = "toothed-serifless"
+w = "straight-serifless"
+u = "toothed-serifless"
+v = "straight-serifless"
+y = "straight-turn-serifless"  # turned tail: unlike v
+# apertures a c e s / C G S: most open forms available (Larson & Carter 2016)
+a = "double-storey-serifless"
+e = "flat-crossbar"
+s = "serifless"
+capital-c = "serifless"
+# pinned so the italic stays close to upright
+f = "serifless"
+k = "straight-serifless"
+# ' " ` ´ and , . ; : (" and ´ have no variant)
+ascii-single-quote = "straight"
+ascii-grave = "straight"
+punctuation-dot = "round"
+# - – — − _ ~ (dashes and minus have no variant)
+underscore = "low"             # stays visible under an underline
+tilde = "low"                  # nearest to the operator axis
+# ( [ { and closing forms ([ ] has no variant)
+paren = "large-contour"        # rounder than [ and {
+brace = "curly"
+# * ^ # % & @
+asterisk = "hex-low"           # centred on the + - = < > axis
+caret = "medium"
+number-sign = "upright"
+percent = "rings-segmented-slash"
+ampersand = "closed"
+at = "fourfold"
+
+[buildPlans.NatewaveMono.variants.italic]
+a = "single-storey-tailed"     # italic cue; mostly oblique otherwise (JetBrains Mono convention)
+f = "tailed"
+
+[buildPlans.NatewaveMono.ligations]
+enables = []                   # empty calt: no ligatures by default; opt in with dlig (Butterick 2019)
+
+[buildPlans.NatewaveMono.weights.Regular]
+shape = 450                    # ~0.09 em stems; boldness helps at small sizes (Beier & Oderkerk 2019)
+menu = 400
+css = 400
+
+[buildPlans.NatewaveMono.weights.Bold]
+shape = 700
+menu = 700
+css = 700
+
+[buildPlans.NatewaveMono.widths.Normal]
+shape = 600                    # 0.6 em; wider letters help (Beier et al. 2021; Oderkerk & Beier 2022)
+menu = 5
+css = "normal"
+
+[buildPlans.NatewaveMono.slopes.Upright]
+angle = 0
+shape = "upright"
+menu = "upright"
+css = "normal"
+
+[buildPlans.NatewaveMono.slopes.Italic]
+angle = 9.4
+shape = "italic"
+menu = "italic"
+css = "italic"
+
+[buildPlans.NatewaveMono.metricOverride]
+xHeight = 545                         # effective size at small px (Legge & Bigelow 2011)
+cap = 730                             # caps shorter than ascenders: I vs l
+ascender = 780                        # extenders 0.43 x-height (Larson & Carter 2016)
+leading = 1350                        # 1.35 em, ~2.5 x-heights (Paterson & Tinker 1932; Chung 2004)
+sb = "default_sb * 0.9"               # wider letters, same pitch (Slattery et al. 2016)
+dotSize = "default_dotSize * 1.1"     # larger i/j dots (Bernard et al. 2016)
+periodSize = "default_periodSize * 1.15"  # visible . , : ; (convention: Input, Source Code Pro)
