@@ -604,7 +604,7 @@ fn add(a: i32) -&gt; i32 { a * 10 }</pre>
 
 <section id="install" class="sec wrap">
   <header class="sec-head"><span class="num">10</span><h2>Install</h2><i class="dots"></i><span class="aside">Unhinted for macOS and high-DPI; hinted for Windows and 1× Linux</span></header>
-  <p class="intro">The download on this page is the unhinted TTF build, rebuilt from the build plan on every change. Hinted TTFs suit Windows and 1× Linux screens: build them with the <code>ttf::NatewaveMono</code> target (see Build from source), or get them from <a data-repo-href="/releases" href="https://github.com/natewave/natewave-mono/releases">GitHub Releases</a> once a version is published.</p>
+  <p class="intro">The download on this page is the unhinted TTF build of the current build plan. Hinted TTFs suit Windows and 1× Linux screens: build them with the <code>ttf::NatewaveMono</code> target (see Build from source), or get them from <a data-repo-href="/releases" href="https://github.com/natewave/natewave-mono/releases">GitHub Releases</a> once a version is published.</p>
   <div class="tabs" role="tablist" aria-label="Operating system">
     <button type="button" role="tab" aria-selected="true" aria-controls="p-mac" id="t-mac">macOS</button>
     <button type="button" role="tab" aria-selected="false" aria-controls="p-linux" id="t-linux">Linux</button>
@@ -796,12 +796,12 @@ ORDER  BY spent DESC
 LIMIT  10;</script>
 <script type="text/plain" id="s-sh">#!/usr/bin/env bash
 set -euo pipefail
-# Build the font, then serve this page locally.
+# Build the font, copy it into docs/, then serve this page locally.
 git clone --depth 1 --branch v34.4.0 https://github.com/be5invis/Iosevka.git
 cp private-build-plans.toml Iosevka/
 (cd Iosevka && npm install && npm run build -- --jCmd=4 webfont-unhinted::NatewaveMono)
-mkdir -p site/fonts && cp Iosevka/dist/NatewaveMono/WOFF2-Unhinted/*.woff2 site/fonts/
-python3 -m http.server --directory site 8000</script>
+sh scripts/update-site-fonts.sh
+python3 -m http.server --directory docs 8000</script>
 <script>
 "use strict";
 const $ = (s, r = document) => r.querySelector(s);
@@ -817,7 +817,7 @@ function setTheme(t) {
 }
 $("#themeBtn").addEventListener("click", () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
 
-/* repository links (the Pages workflow fills data-repo) ---------------------- */
+/* repository links: data-repo, else owner/repo from a *.github.io URL -------- */
 (function () {
   let repo = document.body.dataset.repo || "";
   const m = location.hostname.match(/^([^.]+)\.github\.io$/);

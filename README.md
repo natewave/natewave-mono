@@ -126,27 +126,25 @@ font_family Natewave Mono
 
 ## Website
 
-[`site/index.html`](site/index.html) is a one-page specimen of the font, set in Natewave Mono itself. Its CSS and JavaScript are inline, and it makes no external requests. It's published with GitHub Pages at https://natewave.github.io/natewave-mono/.
+[`docs/index.html`](docs/index.html) is a one-page specimen of the font, set in Natewave Mono itself. Its CSS and JavaScript are inline, and it makes no external requests. GitHub Pages publishes the `docs/` folder of `main` at https://natewave.github.io/natewave-mono/.
 
-The font files on the page aren't committed; `.gitignore` excludes them. On every push to `main` that changes `site/`, the build plan or the workflow, [`.github/workflows/pages.yml`](.github/workflows/pages.yml) builds `webfont-unhinted::NatewaveMono` and adds:
+The site's font files are built locally and committed, so publishing builds nothing:
 
-- `site/fonts/`: the four WOFF2 files and `OFL.txt`.
-- `site/download/NatewaveMono-TTF-Unhinted.zip`: the four unhinted TTFs and `OFL.txt` in a `NatewaveMono/` folder, for the Download button.
+- `docs/fonts/`: the four WOFF2 files and `OFL.txt`.
+- `docs/download/NatewaveMono-TTF-Unhinted.zip`: the four unhinted TTFs and `OFL.txt` in a `NatewaveMono/` folder, for the Download button.
+- `docs/.nojekyll`: tells Pages to serve the files as they are, without Jekyll.
 
-The built files are cached with a key from the build plan and the workflow, so page-only changes skip the font build.
-
-**One-time setup:** in the repository's **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**. Then push, or run the workflow from the **Actions** tab.
-
-**Local preview:** after the build, run these from the repository root:
+**After changing the build plan:** rebuild (see [Build](#build)), then copy the new fonts into `docs/` and commit them:
 
 ```sh
-mkdir -p site/fonts
-cp Iosevka/dist/NatewaveMono/WOFF2-Unhinted/*.woff2 site/fonts/
-cp Iosevka/LICENSE.md site/fonts/OFL.txt
-python3 -m http.server --directory site 8000
+sh scripts/update-site-fonts.sh
 ```
 
-Then open http://localhost:8000. The Download button needs the zip, which the workflow's packaging step builds.
+The script only copies and zips. It stops if the build is missing or `Iosevka/` holds a different plan. Running it again on the same build leaves the files unchanged, so there's nothing new to commit.
+
+**One-time setup:** in the repository's **Settings → Pages → Build and deployment**, set **Source** to **Deploy from a branch**, then choose the `main` branch and the `/docs` folder.
+
+**Local preview:** run `python3 -m http.server --directory docs 8000` from the repository root, then open http://localhost:8000.
 
 ## Design notes
 

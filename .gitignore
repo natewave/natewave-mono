@@ -1,4 +1,2 @@
-# Build checkout and generated binaries: built from private-build-plans.toml, never committed.
+# Iosevka build checkout (see Build in README.md); the site's fonts in docs/ are committed.
 /Iosevka/
-/site/fonts/
-/site/download/
