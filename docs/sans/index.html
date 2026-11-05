@@ -1,0 +1,960 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Natewave Sans — the proportional companion to Natewave Mono</title>
+<meta name="description" content="Natewave Sans is a free proportional sans built from the same Iosevka plan as Natewave Mono: the same letters, x-height and legibility research, spaced for reading prose.">
+<meta property="og:title" content="Natewave Sans — the proportional companion to Natewave Mono">
+<meta property="og:description" content="Il1, 0O, rn m: still told apart. The Mono's x-height and research, spaced for prose. SIL OFL 1.1.">
+<meta name="theme-color" content="#f2f0e9">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%2315161a'/%3E%3Ccircle cx='25' cy='22' r='2.6' fill='%23f05a24'/%3E%3Cpath d='M7 24V8h3l7 11V8h3v16h-3L10 13v11z' fill='%23f2f0e9'/%3E%3C/svg%3E">
+<link rel="preload" href="../fonts/NatewaveSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("nw-theme");
+      if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  })();
+</script>
+<style>
+@font-face { font-family: "Natewave Sans"; src: url("../fonts/NatewaveSans-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Natewave Sans"; src: url("../fonts/NatewaveSans-Italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Natewave Sans"; src: url("../fonts/NatewaveSans-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Natewave Sans"; src: url("../fonts/NatewaveSans-BoldItalic.woff2") format("woff2"); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Natewave Mono"; src: url("../fonts/NatewaveMono-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Natewave Mono"; src: url("../fonts/NatewaveMono-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+
+:root {
+  --sans: "Natewave Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "Natewave Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --paper: #f2f0e9; --paper-2: #e8e5da; --card: #faf9f5;
+  --ink: #15161a; --ink-2: #55575e; --ink-3: #8a8b85; --rule: #cbc6b8;
+  --accent: #2343f5; --accent-ink: #ffffff; --accent-soft: #e2e7ff;
+  --signal: #f05a24; --mark: #ffd84a; --good: #1f8a4c;
+  --shadow: #15161a;
+  color-scheme: light;
+}
+[data-theme="dark"] {
+  --paper: #101115; --paper-2: #18191e; --card: #15161b;
+  --ink: #ebe8df; --ink-2: #a3a39b; --ink-3: #6f7078; --rule: #34363d;
+  --accent: #8b9dff; --accent-ink: #0c0d12; --accent-soft: #1d2342;
+  --signal: #ff7a45; --mark: #ffd84a; --good: #57d48f;
+  --shadow: #000000;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 76px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.55; }
+::selection { background: var(--mark); color: #15161a; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { font-weight: 700; margin: 0; }
+p { margin: 0 0 1em; }
+button, input, select, textarea { font-family: inherit; }
+code, kbd, samp, pre { font-family: var(--mono); font-size: 1em; }
+code { background: var(--paper-2); padding: 0 .25em; border-radius: 2px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+.muted { color: var(--ink-2); }
+
+/* ── header ─────────────────────────────────────────── */
+.bar { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); }
+.bar-in { display: flex; align-items: center; gap: 24px; height: 56px; }
+.logo { font-weight: 700; text-decoration: none; white-space: nowrap; }
+.logo .dot, .display .dot { color: var(--signal); }
+.nav { display: flex; gap: 18px; flex: 1; overflow-x: auto; scrollbar-width: none; }
+.nav::-webkit-scrollbar { display: none; }
+.nav a { text-decoration: none; color: var(--ink-2); white-space: nowrap; font-size: 14px; }
+.nav a:hover, .nav a.on { color: var(--ink); }
+.nav a.on::before { content: "▸"; color: var(--signal); margin-right: 2px; }
+.bar-act { display: flex; align-items: center; gap: 10px; }
+.fam { display: inline-flex; border: 1px solid var(--ink); }
+.fam a { font-size: 13px; padding: 5px 10px; text-decoration: none; color: var(--ink); background: var(--card); white-space: nowrap; }
+.fam a + a { border-left: 1px solid var(--ink); }
+.fam a[aria-current="page"] { background: var(--ink); color: var(--paper); }
+.fam a.m { font-family: var(--mono); }
+.stripe { display: grid; grid-template-columns: repeat(12, 1fr); height: 4px; }
+.stripe i:nth-child(1) { background: #1b5e20; } .stripe i:nth-child(2) { background: #2343f5; } .stripe i:nth-child(3) { background: #39ff6a; }
+.stripe i:nth-child(4) { background: #ffb000; } .stripe i:nth-child(5) { background: #b3261e; } .stripe i:nth-child(6) { background: #0d3b66; }
+.stripe i:nth-child(7) { background: #8a5cf6; } .stripe i:nth-child(8) { background: #f05a24; } .stripe i:nth-child(9) { background: #15161a; }
+.stripe i:nth-child(10) { background: #f6c453; } .stripe i:nth-child(11) { background: #2a1b3d; } .stripe i:nth-child(12) { background: #d9ecd9; }
+
+/* ── buttons & controls ─────────────────────────────── */
+.btn { display: inline-flex; align-items: center; gap: 8px; font: inherit; font-size: 14px; color: var(--ink); background: var(--card); border: 1px solid var(--ink); padding: 7px 14px; text-decoration: none; cursor: pointer; box-shadow: 3px 3px 0 var(--shadow); transition: transform .08s, box-shadow .08s; white-space: nowrap; }
+.btn:hover { color: var(--ink); transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--shadow); }
+.btn:active { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--shadow); }
+.btn-accent { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn-accent:hover { color: var(--accent-ink); }
+.btn.m { font-family: var(--mono); }
+.iconbtn { font: inherit; font-size: 18px; line-height: 1; width: 36px; height: 36px; background: transparent; color: var(--ink); border: 1px solid var(--rule); cursor: pointer; }
+.iconbtn:hover { border-color: var(--ink); }
+.seg { display: inline-flex; flex-wrap: wrap; gap: 1px; max-width: 100%; background: var(--ink); border: 1px solid var(--ink); }
+.seg button { flex: 1 1 auto; font: inherit; font-size: 13px; background: var(--card); color: var(--ink); border: 0; padding: 5px 10px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+input[type="range"] { accent-color: var(--accent); width: 120px; vertical-align: middle; }
+.chk { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; font-size: 13px; }
+.chk input { accent-color: var(--accent); }
+output { display: inline-block; min-width: 4.5ch; font-size: 13px; color: var(--ink-2); }
+
+/* ── tags (evidence strength) ───────────────────────── */
+.tag { display: inline-block; font-size: 11px; line-height: 1; padding: 3px 6px 4px; border: 1px solid var(--ink); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; vertical-align: 1px; }
+.tag.strong { background: var(--ink); color: var(--paper); }
+.tag.convention { border-style: dashed; }
+.tag.preference { border-style: dotted; }
+.tag.req { background: var(--mark); color: #15161a; border-color: #15161a; }
+
+/* ── hero ───────────────────────────────────────────── */
+.hero { padding-top: 44px; padding-bottom: 28px; container-type: inline-size; }
+.eyebrow { font-size: 13px; color: var(--ink-2); margin-bottom: 12px; }
+.eyebrow a { color: var(--ink); }
+.display { font-size: clamp(52px, 11vw, 156px); line-height: .94; margin: 0 0 28px; }
+.lede { font-size: clamp(18px, 2vw, 22px); line-height: 1.5; max-width: 46ch; margin-bottom: 26px; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 16px; margin-bottom: 34px; }
+.cta .meta { color: var(--ink-2); font-size: 13px; }
+.specs { display: grid; grid-template-columns: repeat(6, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); margin: 0; }
+.specs div { padding: 10px 12px; border-right: 1px dotted var(--rule); }
+.specs div:last-child { border-right: 0; }
+.specs dt { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-2); }
+.specs dd { margin: 2px 0 0; font-size: 20px; font-weight: 700; }
+.hero-glyphs { font-size: calc(100cqi / 7.95); line-height: 1; white-space: nowrap; overflow: hidden; margin-top: 18px; letter-spacing: 0; } /* the line is 7.9 em wide in Natewave Sans */
+.hero-glyphs span { color: var(--accent); }
+.hero-glyphs b { color: var(--signal); font-weight: 400; }
+
+/* ── sections ───────────────────────────────────────── */
+.sec { padding-top: 72px; }
+.sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
+.sec-head .num { color: var(--signal); font-weight: 700; }
+.sec-head h2 { font-size: clamp(22px, 3vw, 30px); }
+.sec-head .dots { flex: 1; border-bottom: 2px dotted var(--rule); transform: translateY(-6px); min-width: 20px; }
+.sec-head .aside { color: var(--ink-2); font-size: 13px; white-space: nowrap; }
+.intro { max-width: 70ch; margin-bottom: 26px; }
+
+/* ── mosaic (specimen tiles) ────────────────────────── */
+.mosaic { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 250px; border: 1px solid var(--ink); margin-top: 6px; }
+.tile { position: relative; margin: 0; overflow: hidden; background: var(--bg); color: var(--fg); border-right: 1px solid var(--ink); padding: 30px 18px 14px; }
+.tile:last-child { border-right: 0; }
+.tile figcaption { position: absolute; right: 0; top: 0; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; background: var(--fg); color: var(--bg); padding: 2px 6px; }
+.tile h3 { font-size: 22px; line-height: 1.15; margin: 4px 0 10px; }
+.tile p { font-size: 14px; line-height: 1.5; margin: 0 0 10px; }
+.tile code { background: color-mix(in srgb, var(--fg) 12%, transparent); }
+.tile pre { margin: 0; font-size: 12px; line-height: 1.4; padding: 8px 10px; background: color-mix(in srgb, var(--fg) 8%, transparent); white-space: pre; overflow: hidden; }
+.tile-cream { --bg: #f7efd9; --fg: #3b2f1e; }
+.tile-navy { --bg: #1d2a46; --fg: #dfe7ff; }
+.tile-mint { --bg: #dcefdc; --fg: #145c1f; }
+.tile-violet { --bg: #2a1b3d; --fg: #eadcff; }
+.ui-row { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; padding: 7px 0; border-bottom: 1px solid color-mix(in srgb, var(--fg) 22%, transparent); }
+.ui-row b { font-weight: 700; white-space: nowrap; }
+.ui-btns { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; font-size: 13px; }
+.ui-btns span { padding: 4px 12px; border: 1px solid var(--fg); }
+.ui-btns span + span { background: #ffb000; color: #1d2a46; border-color: #ffb000; font-weight: 700; }
+.tl-big { font-size: 58px; line-height: 1.05; font-weight: 700; margin-top: 2px; }
+.tl-big span { color: #ffb3e3; }
+
+/* ── type tester ────────────────────────────────────── */
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding: 14px 16px; border: 1px solid var(--ink); border-bottom: 0; background: var(--card); font-size: 13px; }
+.controls label { display: inline-flex; align-items: center; gap: 8px; }
+.panes { display: grid; grid-template-columns: 1fr; border: 1px solid var(--ink); }
+.panes.split { grid-template-columns: 1fr 1fr; }
+.pane { position: relative; min-width: 0; }
+.panes.split .pane + .pane { border-left: 1px solid var(--ink); }
+.pane-label { position: absolute; right: 0; top: 0; z-index: 1; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; background: var(--fg); color: var(--bg); padding: 2px 6px; }
+.tester { padding: 22px 24px; min-height: 300px; outline: none; caret-color: var(--signal); white-space: pre-wrap; overflow-wrap: break-word; }
+.tester:focus { box-shadow: inset 0 0 0 2px var(--accent); }
+.tester p { margin: 0 0 .75em; }
+.tester code { background: color-mix(in srgb, var(--fg) 10%, transparent); }
+.cmp .tester { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+.cmp .tester code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+.s-paper { --bg: #fbfaf6; --fg: #1d1e22; }
+.s-night { --bg: #0f1117; --fg: #e3e1d9; }
+.s-sepia { --bg: #f4ecd8; --fg: #3b2f1e; }
+.s-paper, .s-night, .s-sepia { background: var(--bg); color: var(--fg); }
+
+/* ── glyph cards & loupe ────────────────────────────── */
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
+.card { padding: 16px 16px 14px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--card); display: flex; flex-direction: column; }
+.card .g { font-size: 52px; line-height: 1.1; letter-spacing: .08em; white-space: nowrap; margin: 4px 0 12px; }
+.card p { font-size: 14px; line-height: 1.5; margin: 0 0 10px; }
+.card .src { margin-top: auto; font-size: 12px; color: var(--ink-2); margin-bottom: 0; }
+.loupe { margin-top: 28px; border: 1px solid var(--ink); background: var(--card); }
+.loupe-bar { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--ink); font-size: 13px; }
+.loupe-bar strong { margin-right: auto; }
+.loupe-view { overflow: auto; padding: 16px; background: repeating-conic-gradient(var(--paper-2) 0% 25%, transparent 0% 50%) 50% / 16px 16px; }
+#loupe { display: block; image-rendering: pixelated; image-rendering: crisp-edges; margin: 0 auto; max-width: none; }
+.loupe .cap { padding: 10px 16px 12px; margin: 0; font-size: 13px; color: var(--ink-2); border-top: 1px solid var(--ink); }
+
+/* ── widths ─────────────────────────────────────────── */
+.ladder { border: 1px solid var(--ink); background: var(--card); }
+.rung { display: grid; grid-template-columns: 150px 1fr; gap: 18px; align-items: start; padding: 12px 16px; border-bottom: 1px dotted var(--rule); }
+.rung:last-child { border-bottom: 0; }
+.rung .w { font-size: 12px; color: var(--ink-2); line-height: 1.4; }
+.rung .w b { display: block; font-size: 22px; color: var(--ink); }
+.rung .bar { height: 8px; background: var(--accent); margin: 6px 0 12px; }
+.rung.space .bar { background: var(--signal); }
+.gs { display: flex; flex-wrap: wrap; gap: 6px; font-size: 30px; line-height: 1.25; }
+.gb { box-shadow: inset 0 0 0 1px var(--rule); background: var(--paper); white-space: pre; }
+.pitch { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--ink); margin-top: 28px; background: var(--card); }
+.pitch > div { padding: 16px 20px 18px; min-width: 0; }
+.pitch > div + div { border-left: 1px solid var(--ink); }
+.pitch h3 { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; font-weight: 400; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-2); }
+.pitch h3 b { color: var(--ink); letter-spacing: 0; text-transform: none; font-size: 13px; }
+.pt { font-size: 15px; line-height: 1.5; margin: 12px 0 0; }
+.pt.m { font-family: var(--mono); }
+.pitch-sum { margin: 0; padding: 12px 20px; grid-column: 1 / -1; border-top: 1px solid var(--ink); font-size: 14px; }
+.pitch-sum b { color: var(--accent); font-size: 18px; }
+.spec { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 28px; border-top: 1px solid var(--ink); }
+.spec th, .spec td { text-align: left; padding: 8px 12px; border-bottom: 1px dotted var(--rule); vertical-align: top; }
+.spec th { font-weight: 400; color: var(--ink-2); width: 34%; }
+.spec td { font-weight: 700; }
+
+/* ── pairing ────────────────────────────────────────── */
+.pairfig { margin: 0; padding: 18px; border: 1px solid var(--ink); background: var(--card); }
+.pairfig svg { width: 100%; height: auto; display: block; overflow: visible; }
+svg .gl-s { fill: var(--ink); font-family: var(--sans); }
+svg .gl-m { fill: var(--ink); font-family: var(--mono); }
+svg .ln { stroke: var(--ink-3); stroke-width: 4; }
+svg .ln-x { stroke: var(--signal); stroke-width: 7; }
+svg .lb { fill: var(--ink-2); font-family: var(--sans); font-size: 90px; }
+svg .lb-x { fill: var(--signal); font-weight: 700; }
+svg .nm { fill: var(--ink-2); font-family: var(--sans); } /* size set per layout in drawPair() */
+figcaption { font-size: 13px; color: var(--ink-2); margin-top: 10px; }
+.docs { display: grid; grid-template-columns: 1.15fr 1fr; border: 1px solid var(--ink); margin-top: 28px; }
+.doc { padding: 22px 26px; background: var(--card); border-right: 1px solid var(--ink); min-width: 0; }
+.doc h3 { font-size: 26px; line-height: 1.2; margin-bottom: 12px; }
+.doc p { max-width: 62ch; }
+.doc pre { margin: 6px 0 0; padding: 12px 14px; background: var(--paper); border: 1px solid var(--rule); font-size: 14px; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
+.docs.show .doc code, .docs.show .doc pre { box-shadow: 0 0 0 2px var(--signal); }
+.docside { display: flex; flex-direction: column; min-width: 0; }
+.out { position: relative; border-bottom: 1px solid var(--ink); }
+.out:last-child { border-bottom: 0; }
+.out-label { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-2); padding: 10px 70px 0 20px; }
+.out pre { margin: 0; padding: 6px 20px 14px; font-size: 13px; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
+.docbar { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; padding: 12px 20px; border-bottom: 1px solid var(--ink); font-size: 13px; }
+.copy { position: absolute; right: 10px; top: 8px; font: inherit; font-size: 12px; padding: 3px 8px; background: var(--card); color: var(--ink); border: 1px solid var(--ink); cursor: pointer; }
+.copy:hover { background: var(--ink); color: var(--paper); }
+
+/* ── styles ─────────────────────────────────────────── */
+.styles { border-top: 1px solid var(--ink); }
+.srow { display: grid; grid-template-columns: 190px 1fr; gap: 18px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.srow .nm { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-2); }
+.srow .sm { font-size: clamp(20px, 3vw, 34px); line-height: 1.25; overflow-wrap: anywhere; }
+.onum { font-variant-numeric: oldstyle-nums; }
+
+/* ── character set ──────────────────────────────────── */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.chips button { font: inherit; font-size: 13px; padding: 5px 10px; background: var(--card); color: var(--ink); border: 1px solid var(--rule); cursor: pointer; }
+.chips button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.chips button span { color: var(--ink-3); margin-left: 4px; }
+.chips button[aria-pressed="true"] span { color: inherit; opacity: .6; }
+.csw { display: grid; grid-template-columns: 1fr 240px; border: 1px solid var(--ink); }
+.csgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(46px, 1fr)); max-height: 430px; overflow: auto; border-right: 1px solid var(--ink); background: var(--card); align-content: start; }
+.csgrid button { font: inherit; font-size: 24px; line-height: 1.35; height: 54px; background: transparent; color: var(--ink); border: 0; border-right: 1px solid var(--paper-2); border-bottom: 1px solid var(--paper-2); cursor: pointer; padding: 0; overflow: hidden; }
+.csgrid button:hover, .csgrid button:focus-visible { background: var(--ink); color: var(--paper); outline: none; }
+.insp { padding: 16px; display: flex; flex-direction: column; gap: 6px; }
+.insp .big { font-size: 140px; line-height: 1.35; text-align: center; border: 1px dashed var(--rule); background: var(--card); height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.insp .cp { font-weight: 700; font-size: 18px; }
+.insp .hint { font-size: 12px; color: var(--ink-2); }
+
+/* ── evidence ───────────────────────────────────────── */
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-bottom: 14px; font-size: 13px; color: var(--ink-2); }
+.ev { width: 100%; border-collapse: collapse; font-size: 14px; border-top: 1px solid var(--ink); }
+.ev th, .ev td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--rule); }
+.ev thead th { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-2); font-weight: 400; border-bottom: 1px solid var(--ink); }
+.ev td:first-child { font-weight: 700; white-space: nowrap; }
+.ev td:last-child { white-space: nowrap; }
+.limits { margin-top: 26px; border: 1px solid var(--signal); padding: 16px 18px; background: color-mix(in srgb, var(--signal) 7%, var(--card)); }
+.limits h3 { font-size: 16px; margin-bottom: 8px; color: var(--signal); }
+.limits ul { margin: 0; padding-left: 1.2em; font-size: 14px; }
+.limits li { margin-bottom: 4px; }
+.refs { margin-top: 22px; font-size: 14px; }
+.refs summary { cursor: pointer; font-weight: 700; padding: 8px 0; }
+.refs ol { padding-left: 2.4em; margin: 8px 0 0; }
+.refs li { margin-bottom: 6px; color: var(--ink-2); overflow-wrap: anywhere; }
+.refs li a { color: var(--ink); }
+
+/* ── install ────────────────────────────────────────── */
+.tabs { display: flex; flex-wrap: wrap; border-bottom: 1px solid var(--ink); }
+.tabs button { font: inherit; font-size: 14px; background: transparent; color: var(--ink-2); border: 1px solid transparent; border-bottom: 0; padding: 8px 16px; cursor: pointer; margin-bottom: -1px; }
+.tabs button[aria-selected="true"] { color: var(--ink); background: var(--card); border-color: var(--ink); border-bottom: 1px solid var(--card); }
+.panel { border: 1px solid var(--ink); border-top: 0; background: var(--card); padding: 18px 20px; }
+.panel[hidden] { display: none; }
+.panel p { font-size: 15px; max-width: 80ch; }
+.cmd { position: relative; margin: 10px 0 14px; }
+.cmd pre { margin: 0; padding: 12px 70px 12px 14px; background: var(--paper); border: 1px solid var(--rule); font-size: 13px; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
+.cfg { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 10px; }
+.cfg th, .cfg td { text-align: left; vertical-align: top; padding: 9px 10px; border-bottom: 1px solid var(--rule); }
+.cfg th { width: 190px; font-weight: 700; }
+.cfg td pre { margin: 0; font-size: 13px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.cfg td.c { width: 60px; text-align: right; }
+.cfg .copy { position: static; }
+h3.sub { font-size: 18px; margin: 34px 0 6px; }
+
+/* ── footer ─────────────────────────────────────────── */
+.foot { margin-top: 88px; padding-bottom: 60px; font-size: 14px; color: var(--ink-2); display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+.foot .big { font-size: clamp(36px, 7vw, 84px); line-height: 1; color: var(--ink); font-weight: 700; grid-column: 1 / -1; margin-bottom: 8px; padding-top: 22px; border-top: 1px solid var(--ink); }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(20px); background: var(--ink); color: var(--paper); padding: 8px 14px; font-size: 13px; opacity: 0; transition: opacity .15s, transform .15s; pointer-events: none; z-index: 50; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── responsive ─────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .mosaic { grid-template-columns: repeat(2, 1fr); }
+  .tile:nth-child(2n) { border-right: 0; } .tile:nth-child(-n+2) { border-bottom: 1px solid var(--ink); }
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .docs { grid-template-columns: 1fr; }
+  .doc { border-right: 0; border-bottom: 1px solid var(--ink); }
+}
+@media (max-width: 760px) {
+  body { font-size: 15px; }
+  .nav { display: none; }
+  .bar-in { gap: 12px; }
+  .bar-act .btn-accent { display: none; }
+  .specs { grid-template-columns: repeat(3, 1fr); }
+  .specs dd { font-size: 16px; }
+  .specs div:nth-child(3) { border-right: 0; } .specs div:nth-child(-n+3) { border-bottom: 1px dotted var(--rule); }
+  .mosaic { grid-template-columns: 1fr; grid-auto-rows: auto; }
+  .tile { border-right: 0; border-bottom: 1px solid var(--ink); min-height: 220px; } .tile:last-child { border-bottom: 0; }
+  .cards { grid-template-columns: 1fr; }
+  .panes.split { grid-template-columns: 1fr; } .panes.split .pane + .pane { border-left: 0; border-top: 1px solid var(--ink); }
+  .rung { grid-template-columns: 1fr; gap: 4px; }
+  .pitch { grid-template-columns: 1fr; } .pitch > div + div { border-left: 0; border-top: 1px solid var(--ink); }
+  .srow { grid-template-columns: 1fr; gap: 4px; }
+  .csw { grid-template-columns: 1fr; } .csgrid { border-right: 0; border-bottom: 1px solid var(--ink); }
+  .insp .big { height: 150px; font-size: 100px; }
+  .ev thead { display: none; }
+  .ev, .ev tbody, .ev tr, .ev td { display: block; width: 100%; }
+  .ev tr { padding: 10px 0; border-bottom: 1px solid var(--rule); }
+  .ev td { border: 0; padding: 2px 0; white-space: normal !important; }
+  .ev td:nth-child(2) { color: var(--ink-2); }
+  .ev td:last-child { padding-top: 6px; }
+  .spec th { width: 45%; }
+  .cfg, .cfg tbody { display: block; }
+  .cfg tr { display: grid; grid-template-columns: 1fr auto; padding: 6px 0; border-bottom: 1px solid var(--rule); }
+  .cfg th, .cfg td { border: 0; padding: 4px 0; width: auto; }
+  .cfg th { grid-column: 1; grid-row: 1; align-self: center; }
+  .cfg td.c { grid-column: 2; grid-row: 1; width: auto; }
+  .cfg td:not(.c) { grid-column: 1 / -1; grid-row: 2; }
+  .foot { grid-template-columns: 1fr; }
+  .sec-head .aside { display: none; }
+}
+/* The eyebrow, hero and footer still link to Natewave Mono on the narrowest screens. */
+@media (max-width: 480px) {
+  .fam { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+}
+</style>
+</head>
+<body data-repo="natewave/natewave-mono">
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="logo" href="#top">Natewave Sans<span class="dot" aria-hidden="true">.</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#tester">Tester</a><a href="#glyphs">Glyphs</a><a href="#widths">Widths</a><a href="#pairing">Pairing</a><a href="#styles">Styles</a><a href="#charset">Charset</a><a href="#evidence">Evidence</a><a href="#install">Install</a>
+    </nav>
+    <div class="bar-act">
+      <nav class="fam" aria-label="Font family"><a class="m" href="../">Mono</a><a href="./" aria-current="page">Sans</a></nav>
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="Switch between light and dark theme" title="Light / dark">◐</button>
+      <a class="btn btn-accent" href="../download/NatewaveSans-TTF-Unhinted.zip" download>Download</a>
+    </div>
+  </div>
+  <div class="stripe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</header>
+
+<main>
+<section id="top" class="hero wrap">
+  <p class="eyebrow">The proportional companion to <a href="../">Natewave Mono</a></p>
+  <h1 class="display">Natewave<br>Sans<span class="dot" aria-hidden="true">.</span></h1>
+  <p class="lede">The Mono's letters, x-height and research, spaced for reading prose instead of aligning code.</p>
+  <div class="cta">
+    <a class="btn btn-accent" href="../download/NatewaveSans-TTF-Unhinted.zip" download>Download TTF ↓</a>
+    <a class="btn m" href="../">Natewave Mono →</a>
+    <a class="btn" data-repo-href="" href="https://github.com/natewave/natewave-mono">Source on GitHub ↗</a>
+    <span class="meta">Free under the SIL Open Font License 1.1 · built from Iosevka v34.4.0</span>
+  </div>
+  <dl class="specs">
+    <div><dt>Widths</dt><dd>4/6–9/6</dd></div>
+    <div><dt>x-height</dt><dd>0.545 em</dd></div>
+    <div><dt>Line height</dt><dd>1.35</dd></div>
+    <div><dt>Word space</dt><dd>0.350 em</dd></div>
+    <div><dt>Styles</dt><dd>4</dd></div>
+    <div><dt>Code points</dt><dd>7,564</dd></div>
+  </dl>
+  <div class="hero-glyphs" aria-hidden="true"><span>0</span>O <span>1</span>lI <span>9</span>gq <b>rn</b> m</div>
+</section>
+
+<section class="wrap" aria-label="Specimens">
+  <div class="mosaic">
+    <figure class="tile tile-cream"><figcaption>Essay</figcaption><h3>On reading</h3><p>Proportional spacing makes lines shorter, so the eyes need fewer jumps to cover the same words. Near the smallest readable size, the even rhythm of fixed pitch wins again.</p></figure>
+    <figure class="tile tile-navy"><figcaption>Interface</figcaption><div class="ui-row"><span>Appearance</span><b>Light</b></div><div class="ui-row"><span>Text size</span><b>15 px</b></div><div class="ui-row"><span>Sync</span><b>On</b></div><div class="ui-row"><span>Storage</span><b>12.8 of 15 GB</b></div><div class="ui-btns"><span>Cancel</span><span>Save</span></div></figure>
+    <figure class="tile tile-mint"><figcaption>Docs</figcaption><h3>Install</h3><p>Copy the fonts to <code>~/Library/Fonts</code>, then set <code>font-family</code> to Natewave Sans.</p><pre>cp NatewaveSans/*.ttf \
+   ~/Library/Fonts/</pre></figure>
+    <figure class="tile tile-violet"><figcaption>Display</figcaption><div class="tl-big">Il1 0O<br><span>rn</span> m<br><span>cl</span> d</div></figure>
+  </div>
+</section>
+
+<section id="tester" class="sec wrap">
+  <header class="sec-head"><span class="num">01</span><h2>Type tester</h2><i class="dots"></i><span class="aside">Click the text and type.</span></header>
+  <div class="controls" role="group" aria-label="Type tester settings">
+    <label>Size <input type="range" id="tSize" min="10" max="48" value="18" aria-label="Font size"><output id="tSizeOut">18 px</output></label>
+    <label>Line <input type="range" id="tLead" min="1" max="2" step="0.05" value="1.5" aria-label="Line height"><output id="tLeadOut">1.50</output></label>
+    <label>Length <input type="range" id="tMeasure" min="30" max="100" value="66" aria-label="Line length in characters"><output id="tMeasureOut">66 ch</output></label>
+    <div class="seg" data-ctl="weight" role="group" aria-label="Weight"><button type="button" aria-pressed="true" data-v="400">Regular</button><button type="button" aria-pressed="false" data-v="700">Bold</button></div>
+    <div class="seg" data-ctl="style" role="group" aria-label="Style"><button type="button" aria-pressed="true" data-v="normal">Upright</button><button type="button" aria-pressed="false" data-v="italic">Italic</button></div>
+    <div class="seg" data-ctl="figures" role="group" aria-label="Figures"><button type="button" aria-pressed="true" data-v="lining">Lining 123</button><button type="button" aria-pressed="false" data-v="oldstyle">Old-style 123</button></div>
+    <div class="seg" data-ctl="scheme" role="group" aria-label="Colour scheme"><button type="button" aria-pressed="true" data-v="paper">Paper</button><button type="button" aria-pressed="false" data-v="sepia">Sepia</button><button type="button" aria-pressed="false" data-v="night">Night</button></div>
+    <div class="seg" data-ctl="sample" role="group" aria-label="Sample"><button type="button" aria-pressed="true" data-v="prose">Prose</button><button type="button" aria-pressed="false" data-v="docs">Docs</button><button type="button" aria-pressed="false" data-v="ui">Interface</button></div>
+    <label class="chk"><input type="checkbox" id="tCmp"> Compare with your system sans</label>
+  </div>
+  <div class="panes" id="tPanes">
+    <div class="pane s-paper" id="tPaneA"><div class="pane-label">Natewave Sans</div><div class="tester" id="tText" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true" aria-label="Editable sample text"></div></div>
+    <div class="pane cmp s-paper" id="tPaneB" hidden><div class="pane-label">Your system sans</div><div class="tester" id="tCmpText" aria-hidden="true"></div></div>
+  </div>
+</section>
+
+<section id="glyphs" class="sec wrap">
+  <header class="sec-head"><span class="num">02</span><h2>Tell them apart</h2><i class="dots"></i><span class="aside">The Mono's distinctions, kept in prose</span></header>
+  <p class="intro">Many sans designs draw I, l and 1 as the same bar. Natewave Sans keeps every distinction the Mono makes, because the research behind them comes from proportional prose in the first place. Only the serifs that existed to fill a monospace cell are gone.</p>
+  <div class="cards">
+    <article class="card"><div class="g">Il1|</div><p>I has bars, l a tail, 1 a flag and a foot, and | is a plain rule. Line ends carry most of what identifies a letter.</p><p class="src"><span class="tag moderate">moderate</span> Fiset et al., 2008</p></article>
+    <article class="card"><div class="g">0Oo</div><p>Zero keeps the Mono's dot and narrower oval, so codes and IDs read the same in both families.</p><p class="src"><span class="tag req">requirement</span> Unicode UTS #39 on confusables</p></article>
+    <article class="card"><div class="g">ij!</div><p>i keeps a short tail, which makes it wider than a bare stroke and unlike l. The dots are 10% larger.</p><p class="src"><span class="tag moderate">moderate</span> Beier &amp; Larson, 2010</p></article>
+    <article class="card"><div class="g">rn m</div><p>Widths separate them now: rn is a third wider than m, and cl two thirds wider than d.</p><p class="src"><span class="tag convention">convention</span> proportional spacing</p></article>
+    <article class="card"><div class="g">9gq</div><p>A double-storey g breaks the g, q, y look-alike group of descending letters.</p><p class="src"><span class="tag moderate">moderate</span> Bernard et al., 2016</p></article>
+    <article class="card"><div class="g">8B3</div><p>A flat-topped 3 stays clear of 8 and B, as in the Mono.</p><p class="src"><span class="tag convention">convention</span> JetBrains Mono</p></article>
+    <article class="card"><div class="g">.,;:</div><p>Periods and commas are 15% larger than Iosevka's default, so sentence ends survive small sizes.</p><p class="src"><span class="tag convention">convention</span> Input, Source Code Pro</p></article>
+    <article class="card"><div class="g">a*†</div><p>The asterisk sits high, where a footnote mark belongs. The Mono centres it on the operator axis for code.</p><p class="src"><span class="tag convention">convention</span> prose typesetting</p></article>
+  </div>
+
+  <div class="loupe">
+    <div class="loupe-bar">
+      <strong>11 px loupe</strong>
+      <label>Size <input type="range" id="lSize" min="8" max="16" value="11" aria-label="Loupe font size"><output id="lSizeOut">11 px</output></label>
+      <div class="seg" data-ctl="lpol" role="group" aria-label="Polarity"><button type="button" aria-pressed="true" data-v="light">Dark on light</button><button type="button" aria-pressed="false" data-v="dark">Light on dark</button></div>
+      <div class="seg" data-ctl="lzoom" role="group" aria-label="Zoom"><button type="button" aria-pressed="false" data-v="5">5×</button><button type="button" aria-pressed="true" data-v="7">7×</button><button type="button" aria-pressed="false" data-v="10">10×</button></div>
+    </div>
+    <div class="loupe-view"><canvas id="loupe" role="img" aria-label="Natewave Sans rendered at small size on a 1× pixel grid, magnified"></canvas></div>
+    <p class="cap">Drawn live by your browser at <b id="lPx">11</b> px on a 1× pixel grid, then magnified without smoothing. Below this size, prefer Natewave Mono: fixed pitch reads better near the acuity limit.</p>
+  </div>
+</section>
+
+<section id="widths" class="sec wrap">
+  <header class="sec-head"><span class="num">03</span><h2>Spaced in sixths</h2><i class="dots"></i><span class="aside">Measured live from the font</span></header>
+  <p class="intro">Iosevka builds proportional families by giving each glyph a width in sixths of the Mono's 600-unit cell. Narrow letters drop to 4/6, wide ones grow to 8/6 or 9/6, and most stay at 6/6, which keeps the Mono's letterforms intact. The space shrinks to 350 units. Each box below is one glyph's full advance width.</p>
+  <div class="ladder" id="ladder" aria-live="polite"></div>
+
+  <div class="pitch">
+    <div><h3>Natewave Mono <b id="pMn">–</b></h3><p class="pt m" id="pM">Proportional spacing earns its keep in running text. Spaces shrink to 350 units, i and l to 400, and the line gets shorter, so the eyes need fewer jumps to cover the same words. The gain fades near the acuity limit, where the even rhythm of a monospace reads better.</p></div>
+    <div><h3>Natewave Sans <b id="pSn">–</b></h3><p class="pt" id="pS">Proportional spacing earns its keep in running text. Spaces shrink to 350 units, i and l to 400, and the line gets shorter, so the eyes need fewer jumps to cover the same words. The gain fades near the acuity limit, where the even rhythm of a monospace reads better.</p></div>
+    <p class="pitch-sum">Natewave Sans sets this paragraph <b id="pitchPct">–</b> narrower. Proportional pitch was read faster at medium and large sizes, and fixed pitch near the acuity limit (Arditi et al., 1990).</p>
+  </div>
+
+  <table class="spec" aria-label="Font specifications">
+    <tr><th>Advance widths</th><td>400–900 for letters, in sixths of 600; digits all 600</td></tr>
+    <tr><th>Word space</th><td>350</td></tr>
+    <tr><th>x-height</th><td>545, same as Natewave Mono</td></tr>
+    <tr><th>Cap height</th><td>730</td></tr>
+    <tr><th>Ascender / descender</th><td>780 / −235</td></tr>
+    <tr><th>Line height</th><td>1.35 em, same on macOS, Windows, Linux</td></tr>
+    <tr><th>Side-bearings</th><td>Iosevka default (the Mono's are 10% narrower)</td></tr>
+    <tr><th>Kerning</th><td>None (Iosevka has no kerning)</td></tr>
+    <tr><th>Figures</th><td>Lining and tabular by default; old-style with onum</td></tr>
+    <tr><th>Styles</th><td>Regular, Italic, Bold, Bold Italic</td></tr>
+    <tr><th>Coverage</th><td>7,564 code points</td></tr>
+    <tr><th>Built from</th><td>Iosevka v34.4.0, quasi-proportional spacing</td></tr>
+  </table>
+</section>
+
+<section id="pairing" class="sec wrap">
+  <header class="sec-head"><span class="num">04</span><h2>Made to pair with the Mono</h2><i class="dots"></i><span class="aside">One set of vertical metrics</span></header>
+  <p class="intro">Both families share every vertical metric: x-height, cap height, ascenders, descenders and line height. Code set in Natewave Mono needs no size correction inside Natewave Sans text, and a mixed line keeps one baseline and one x-height.</p>
+  <figure class="pairfig">
+    <svg id="pair" role="img" aria-label="Hxgl set in Natewave Sans and in Natewave Mono on shared lines: ascender 780, cap height 730, x-height 545, baseline 0, descender minus 235."></svg>
+    <figcaption>Both words are set at the same size. Every line meets the same parts of both families.</figcaption>
+  </figure>
+  <div class="docs" id="docs">
+    <article class="doc">
+      <h3>Reading code isn't reading prose</h3>
+      <p>Most legibility studies tested prose, so Natewave Sans takes their findings directly, while Natewave Mono extrapolates them to code. Set text in the Sans, and keep <code>code</code>, <code>kbd</code> and <code>pre</code> in the Mono: at the same <code>font-size</code>, their x-heights match.</p>
+      <pre>$ fc-list : family | grep Natewave
+Natewave Mono
+Natewave Sans</pre>
+    </article>
+    <div class="docside">
+      <div class="docbar"><label class="chk"><input type="checkbox" id="dShow"> Outline the Mono</label></div>
+      <div class="out"><div class="out-label">CSS for this pairing</div><button class="copy" type="button" data-copy="oPair">Copy</button><pre id="oPair">@font-face {
+  font-family: "Natewave Sans";
+  src: url("fonts/NatewaveSans-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Natewave Mono";
+  src: url("fonts/NatewaveMono-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+/* Add Italic, Bold and BoldItalic the same way. */
+
+body { font-family: "Natewave Sans", system-ui, sans-serif; line-height: 1.5; }
+code, kbd, pre, samp { font-family: "Natewave Mono", ui-monospace, monospace; font-size: 1em; }</pre></div>
+    </div>
+  </div>
+</section>
+
+<section id="styles" class="sec wrap">
+  <header class="sec-head"><span class="num">05</span><h2>Four styles</h2><i class="dots"></i><span class="aside">The Mono's weights and italic</span></header>
+  <div class="styles">
+    <div class="srow"><span class="nm">Regular · 400</span><span class="sm">Sphinx of black quartz, judge my vow: Il1 0O rn m</span></div>
+    <div class="srow"><span class="nm">Italic · 400</span><span class="sm" style="font-style:italic">Sphinx of black quartz, judge my vow: Il1 0O rn m</span></div>
+    <div class="srow"><span class="nm">Bold · 700</span><span class="sm" style="font-weight:700">Sphinx of black quartz, judge my vow: Il1 0O rn m</span></div>
+    <div class="srow"><span class="nm">Bold Italic · 700</span><span class="sm" style="font-weight:700;font-style:italic">Sphinx of black quartz, judge my vow: Il1 0O rn m</span></div>
+    <div class="srow"><span class="nm">Lining figures</span><span class="sm">In 1984, 3,750 readers took 26 tests.</span></div>
+    <div class="srow"><span class="nm">Old-style · onum</span><span class="sm onum">In 1984, 3,750 readers took 26 tests.</span></div>
+  </div>
+  <p class="muted" style="margin-top:14px;font-size:14px">Regular is drawn a little heavier than Iosevka's, because boldness helps at small sizes. The italic is mostly oblique, with cursive a and f, and italics read slightly slower (Tinker &amp; Paterson, 1928), so keep them for emphasis. Old-style figures sit better in running text; the default lining figures are all the same width, so they line up in tables.</p>
+</section>
+
+<section id="charset" class="sec wrap">
+  <header class="sec-head"><span class="num">06</span><h2>Character set</h2><i class="dots"></i><span class="aside" id="csCount">7,564 code points</span></header>
+  <div class="chips" id="chips" role="group" aria-label="Character categories"></div>
+  <div class="csw">
+    <div class="csgrid" id="csGrid" aria-label="Glyphs"></div>
+    <aside class="insp" aria-live="polite"><div class="big" id="iBig">g</div><div class="cp" id="iCp">U+0067</div><div class="hint" id="iHint">Hover a glyph to inspect it; click to copy.</div></aside>
+  </div>
+</section>
+
+<section id="evidence" class="sec wrap">
+  <header class="sec-head"><span class="num">07</span><h2>The evidence</h2><i class="dots"></i><span class="aside">27 sources, each read at least as an abstract</span></header>
+  <p class="intro">The Mono had to extrapolate prose research to code. The Sans doesn't: most legibility research tested proportional fonts reading prose, which is what this family is for. Each row is labelled with how strong its evidence is.</p>
+  <div class="legend"><span><span class="tag strong">strong</span> replicated, or reviews agree</span><span><span class="tag moderate">moderate</span> one controlled study, or caveats</span><span><span class="tag convention">convention</span> type-design practice</span><span><span class="tag preference">preference</span> what people like</span></div>
+  <div style="overflow-x:auto">
+  <table class="ev">
+    <thead><tr><th>Decision</th><th>Value</th><th>Basis</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td>Proportional</td><td>Letters 4/6–9/6 of 600 units; space 350</td><td>Proportional pitch was read faster at medium and large sizes, because lines get shorter and need fewer eye movements; fixed pitch won near the acuity limit (<a href="https://doi.org/10.1364/JOSAA.7.002011">Arditi et al., 1990</a>). Normal readers were 5% faster with Times than with Courier (<a href="https://pubmed.ncbi.nlm.nih.gov/8675391/">Mansfield et al., 1996</a>).</td><td><span class="tag moderate">moderate</span></td></tr>
+      <tr><td>Small text</td><td>Use Natewave Mono near the smallest readable size and for low vision</td><td>Courier gave better reading acuity and a smaller critical print size than Times, and low-vision readers were 10% faster with it (<a href="https://pubmed.ncbi.nlm.nih.gov/8675391/">Mansfield et al., 1996</a>).</td><td><span class="tag moderate">moderate</span></td></tr>
+      <tr><td>Letter spacing</td><td>Iosevka's default side-bearings, not the Mono's × 0.9</td><td>Slightly looser letter spacing sped up word recognition (<a href="https://doi.org/10.1016/j.actpsy.2011.04.003">Perea et al., 2011</a>; <a href="https://doi.org/10.3758/s13423-011-0214-6">Perea &amp; Gómez, 2012</a>), but the direction of the effect depends on a font's default spacing (<a href="https://doi.org/10.1037/xap0000104">Slattery et al., 2016</a>).</td><td><span class="tag moderate">moderate</span></td></tr>
+      <tr><td>x-height</td><td>545 (Iosevka 520), as in the Mono</td><td>x-height sets the effective size of text (<a href="https://doi.org/10.1167/11.5.8">Legge &amp; Bigelow, 2011</a>).</td><td><span class="tag strong">strong</span></td></tr>
+      <tr><td>Extenders</td><td>Ascender 780, cap 730, descender −235</td><td>A large x-height costs letters with ascenders and descenders (<a href="https://doi.org/10.1142/9789814759540_0003">Larson &amp; Carter, 2016</a>).</td><td><span class="tag moderate">moderate</span></td></tr>
+      <tr><td>Width</td><td>600-unit base, as in Iosevka Aile</td><td>Wider letters help recognition and low-vision acuity (<a href="https://doi.org/10.1075/idj.19033.bei">Beier et al., 2021</a>; <a href="https://doi.org/10.1080/00140139.2021.1991001">Oderkerk &amp; Beier, 2022</a>); width changes eye movements, not speed (<a href="https://doi.org/10.1016/j.apergo.2021.103523">Minakata &amp; Beier, 2021</a>).</td><td><span class="tag moderate">moderate</span></td></tr>
+      <tr><td>Line height</td><td>1.35 em</td><td>1.2–1.4 em beats tight setting (<a href="https://doi.org/10.1037/h0074988">Paterson &amp; Tinker, 1932</a>; <a href="https://doi.org/10.1177/001872088402600309">Kruk &amp; Muter, 1984</a>; <a href="https://doi.org/10.1016/j.displa.2007.04.003">Ling &amp; van Schaik, 2007</a>; <a href="https://doi.org/10.1097/00006324-200407000-00014">Chung, 2004</a>).</td><td><span class="tag moderate">moderate</span></td></tr>
+      <tr><td>Weight</td><td>Stems ≈ 0.090 em; Bold 700</td><td>Boldness helps at small sizes (<a href="https://doi.org/10.1016/j.actpsy.2019.102904">Beier &amp; Oderkerk, 2019</a>); low contrast suits sans designs (<a href="https://doi.org/10.1016/j.actpsy.2022.103623">Minakata &amp; Beier, 2022</a>).</td><td><span class="tag moderate">moderate</span></td></tr>
+      <tr><td>Polarity</td><td>One Regular, no thinner dark cut</td><td>Dark-on-light is more legible, most of all at small sizes (<a href="https://doi.org/10.1080/00140139.2013.790485">Piepenbrock et al., 2013</a>, <a href="https://doi.org/10.1177/0018720813515509">2014</a>; <a href="https://doi.org/10.1080/00140139.2015.1137637">Dobres et al., 2016</a>); grade only mattered in light mode (<a href="https://doi.org/10.1145/3544548.3581552">Palmén et al., 2023</a>). In dark themes, add 1 px of size instead.</td><td><span class="tag strong">strong</span> <span class="tag moderate">moderate</span></td></tr>
+      <tr><td>Glyph identity</td><td>Barred I, tailed l, flagged 1, dotted 0, double-storey g; i keeps a short tail</td><td>Line ends identify letters (<a href="https://doi.org/10.1111/j.1467-9280.2008.02218.x">Fiset et al., 2008</a>); breaking look-alike groups improved letter recognition (<a href="https://doi.org/10.1371/journal.pone.0152506">Bernard et al., 2016</a>); narrow letters improve when widened (<a href="https://doi.org/10.1075/idj.18.2.03bei">Beier &amp; Larson, 2010</a>).</td><td><span class="tag moderate">moderate</span></td></tr>
+      <tr><td>Serifs</td><td>Sans; the Mono's cell-filling serifs on i, j, J and r are gone</td><td>Serifs alone don't change legibility (<a href="https://doi.org/10.1016/j.visres.2005.06.013">Arditi &amp; Cho, 2005</a>).</td><td><span class="tag moderate">moderate</span></td></tr>
+      <tr><td>Italic</td><td>9.4°, mostly oblique</td><td>Italics read slightly slower (<a href="https://doi.org/10.1037/h0073699">Tinker &amp; Paterson, 1928</a>; <a href="https://doi.org/10.1145/2513383.2513447">Rello &amp; Baeza-Yates, 2013</a>); no study compares cursive with oblique.</td><td><span class="tag moderate">moderate</span> <span class="tag convention">convention</span></td></tr>
+      <tr><td>Pairing</td><td>The Mono's vertical metrics; no ligatures; raised *</td><td>Inline code lines up without size correction; footnote marks sit high in prose.</td><td><span class="tag convention">convention</span></td></tr>
+      <tr><td>Alternates</td><td>cv## and ss## features kept</td><td>Different fonts make different people read faster (<a href="https://doi.org/10.1145/3502222">Wallace et al., 2022</a>).</td><td><span class="tag preference">preference</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="limits">
+    <h3>What Iosevka v34.4.0 can't do</h3>
+    <ul>
+      <li>No kerning: Iosevka only positions marks, so pairs like To, AV, Ty and r, keep their full gaps.</li>
+      <li>Widths come in sixths, not letter by letter: most lowercase letters share 600 units, so f, r and t set looser than in a hand-spaced sans.</li>
+      <li>The openings of c, e and s are the Mono's, so they stay fairly closed for a text face.</li>
+    </ul>
+  </div>
+  <details class="refs">
+    <summary>References (27)</summary>
+    <ol>
+      <li>Arditi, A., &amp; Cho, J. (2005). Serifs and font legibility. <i>Vision Research, 45</i>(23), 2926–2933. <a href="https://doi.org/10.1016/j.visres.2005.06.013">doi:10.1016/j.visres.2005.06.013</a></li>
+      <li>Arditi, A., Knoblauch, K., &amp; Grunwald, I. (1990). Reading with fixed and variable character pitch. <i>Journal of the Optical Society of America A, 7</i>(10), 2011–2015. <a href="https://doi.org/10.1364/JOSAA.7.002011">doi:10.1364/JOSAA.7.002011</a></li>
+      <li>Beier, S., &amp; Larson, K. (2010). Design improvements for frequently misrecognized letters. <i>Information Design Journal, 18</i>(2), 118–137. <a href="https://doi.org/10.1075/idj.18.2.03bei">doi:10.1075/idj.18.2.03bei</a></li>
+      <li>Beier, S., &amp; Oderkerk, C. A. T. (2019). Smaller visual angles show greater benefit of letter boldness than larger visual angles. <i>Acta Psychologica, 199</i>, 102904. <a href="https://doi.org/10.1016/j.actpsy.2019.102904">doi:10.1016/j.actpsy.2019.102904</a></li>
+      <li>Beier, S., Oderkerk, C. A. T., Bay, B., &amp; Larsen, M. (2021). Increased letter spacing and greater letter width improve reading acuity in low vision readers. <i>Information Design Journal, 26</i>(1), 73–88. <a href="https://doi.org/10.1075/idj.19033.bei">doi:10.1075/idj.19033.bei</a></li>
+      <li>Bernard, J.-B., Aguilar, C., &amp; Castet, E. (2016). A new font, specifically designed for peripheral vision, improves peripheral letter and word recognition, but not eye-mediated reading performance. <i>PLOS ONE, 11</i>(4), e0152506. <a href="https://doi.org/10.1371/journal.pone.0152506">doi:10.1371/journal.pone.0152506</a></li>
+      <li>Chung, S. T. L. (2004). Reading speed benefits from increased vertical word spacing in normal peripheral vision. <i>Optometry and Vision Science, 81</i>(7), 525–535. <a href="https://doi.org/10.1097/00006324-200407000-00014">doi:10.1097/00006324-200407000-00014</a></li>
+      <li>Dobres, J., Chahine, N., Reimer, B., Gould, D., Mehler, B., &amp; Coughlin, J. F. (2016). Utilising psychophysical techniques to investigate the effects of age, typeface design, size and display polarity on glance legibility. <i>Ergonomics, 59</i>(10), 1377–1391. <a href="https://doi.org/10.1080/00140139.2015.1137637">doi:10.1080/00140139.2015.1137637</a></li>
+      <li>Fiset, D., Blais, C., Éthier-Majcher, C., Arguin, M., Bub, D., &amp; Gosselin, F. (2008). Features for identification of uppercase and lowercase letters. <i>Psychological Science, 19</i>(11), 1161–1168. <a href="https://doi.org/10.1111/j.1467-9280.2008.02218.x">doi:10.1111/j.1467-9280.2008.02218.x</a></li>
+      <li>Kruk, R. S., &amp; Muter, P. (1984). Reading of continuous text on video screens. <i>Human Factors, 26</i>(3), 339–345. <a href="https://doi.org/10.1177/001872088402600309">doi:10.1177/001872088402600309</a></li>
+      <li>Larson, K., &amp; Carter, M. (2016). Sitka: A collaboration between type design and science. In M. C. Dyson &amp; C. Y. Suen (Eds.), <i>Digital fonts and reading</i> (pp. 37–53). World Scientific. <a href="https://doi.org/10.1142/9789814759540_0003">doi:10.1142/9789814759540_0003</a></li>
+      <li>Legge, G. E., &amp; Bigelow, C. A. (2011). Does print size matter for reading? A review of findings from vision science and typography. <i>Journal of Vision, 11</i>(5), 8. <a href="https://doi.org/10.1167/11.5.8">doi:10.1167/11.5.8</a></li>
+      <li>Ling, J., &amp; van Schaik, P. (2007). The influence of line spacing and text alignment on visual search of web pages. <i>Displays, 28</i>(2), 60–67. <a href="https://doi.org/10.1016/j.displa.2007.04.003">doi:10.1016/j.displa.2007.04.003</a></li>
+      <li>Mansfield, J. S., Legge, G. E., &amp; Bane, M. C. (1996). Psychophysics of reading. XV: Font effects in normal and low vision. <i>Investigative Ophthalmology &amp; Visual Science, 37</i>(8), 1492–1501. <a href="https://pubmed.ncbi.nlm.nih.gov/8675391/">PMID 8675391</a></li>
+      <li>Minakata, K., &amp; Beier, S. (2021). The effect of font width on eye movements during reading. <i>Applied Ergonomics, 97</i>, 103523. <a href="https://doi.org/10.1016/j.apergo.2021.103523">doi:10.1016/j.apergo.2021.103523</a></li>
+      <li>Minakata, K., &amp; Beier, S. (2022). The dispute about sans serif versus serif fonts: An interaction between the variables of serif and stroke contrast. <i>Acta Psychologica, 228</i>, 103623. <a href="https://doi.org/10.1016/j.actpsy.2022.103623">doi:10.1016/j.actpsy.2022.103623</a></li>
+      <li>Oderkerk, C. A. T., &amp; Beier, S. (2022). Fonts of wider letter shapes improve letter recognition in parafovea and periphery. <i>Ergonomics, 65</i>(5), 753–761. <a href="https://doi.org/10.1080/00140139.2021.1991001">doi:10.1080/00140139.2021.1991001</a></li>
+      <li>Palmén, H., Gilbert, M., &amp; Crossland, D. (2023). How bold can we be? The impact of adjusting font grade on readability in light and dark polarities. In <i>Proceedings of CHI '23</i> (pp. 1–11). ACM. <a href="https://doi.org/10.1145/3544548.3581552">doi:10.1145/3544548.3581552</a></li>
+      <li>Paterson, D. G., &amp; Tinker, M. A. (1932). Studies of typographical factors influencing speed of reading. VIII. Space between lines or leading. <i>Journal of Applied Psychology, 16</i>(4), 388–397. <a href="https://doi.org/10.1037/h0074988">doi:10.1037/h0074988</a></li>
+      <li>Perea, M., &amp; Gómez, P. (2012). Increasing interletter spacing facilitates encoding of words. <i>Psychonomic Bulletin &amp; Review, 19</i>(2), 332–338. <a href="https://doi.org/10.3758/s13423-011-0214-6">doi:10.3758/s13423-011-0214-6</a></li>
+      <li>Perea, M., Moret-Tatay, C., &amp; Gómez, P. (2011). The effects of interletter spacing in visual-word recognition. <i>Acta Psychologica, 137</i>(3), 345–351. <a href="https://doi.org/10.1016/j.actpsy.2011.04.003">doi:10.1016/j.actpsy.2011.04.003</a></li>
+      <li>Piepenbrock, C., Mayr, S., Mund, I., &amp; Buchner, A. (2013). Positive display polarity is advantageous for both younger and older adults. <i>Ergonomics, 56</i>(7), 1116–1124. <a href="https://doi.org/10.1080/00140139.2013.790485">doi:10.1080/00140139.2013.790485</a></li>
+      <li>Piepenbrock, C., Mayr, S., &amp; Buchner, A. (2014). Positive display polarity is particularly advantageous for small character sizes. <i>Human Factors, 56</i>(5), 942–951. <a href="https://doi.org/10.1177/0018720813515509">doi:10.1177/0018720813515509</a></li>
+      <li>Rello, L., &amp; Baeza-Yates, R. (2013). Good fonts for dyslexia. In <i>Proceedings of ASSETS '13</i> (pp. 1–8). ACM. <a href="https://doi.org/10.1145/2513383.2513447">doi:10.1145/2513383.2513447</a></li>
+      <li>Slattery, T. J., Yates, M., &amp; Angele, B. (2016). Interword and interletter spacing effects during reading revisited: Interactions with word and font characteristics. <i>Journal of Experimental Psychology: Applied, 22</i>(4), 406–422. <a href="https://doi.org/10.1037/xap0000104">doi:10.1037/xap0000104</a></li>
+      <li>Tinker, M. A., &amp; Paterson, D. G. (1928). Influence of type form on speed of reading. <i>Journal of Applied Psychology, 12</i>(4), 359–368. <a href="https://doi.org/10.1037/h0073699">doi:10.1037/h0073699</a></li>
+      <li>Wallace, S., Bylinskii, Z., Dobres, J., Kerr, B., Berlow, S., Treitman, R., Kumawat, N., Arpin, K., Miller, D. B., Huang, J., &amp; Sawyer, B. D. (2022). Towards individuated reading experiences: Different fonts increase reading speed for different individuals. <i>ACM Transactions on Computer-Human Interaction, 29</i>(4), 38. <a href="https://doi.org/10.1145/3502222">doi:10.1145/3502222</a></li>
+    </ol>
+  </details>
+</section>
+
+<section id="install" class="sec wrap">
+  <header class="sec-head"><span class="num">08</span><h2>Install</h2><i class="dots"></i><span class="aside">Unhinted TTF, for macOS and high-DPI screens</span></header>
+  <p class="intro">The download on this page is the unhinted TTF build of the current build plan. Hinted TTFs suit Windows and 1× Linux screens: build them with the <code>ttf::NatewaveSans</code> target (see Build from source), or get them from <a data-repo-href="/releases" href="https://github.com/natewave/natewave-mono/releases">GitHub Releases</a> once a version is published.</p>
+  <div class="tabs" role="tablist" aria-label="Operating system">
+    <button type="button" role="tab" aria-selected="true" aria-controls="p-mac" id="t-mac">macOS</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="p-linux" id="t-linux">Linux</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="p-win" id="t-win">Windows</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="p-src" id="t-src">Build from source</button>
+  </div>
+  <div class="panel" role="tabpanel" id="p-mac" aria-labelledby="t-mac">
+    <p>Unzip the download, then double-click each .ttf and choose <b>Install</b>, or copy them into your fonts folder:</p>
+    <div class="cmd"><pre id="c-mac">cp NatewaveSans/*.ttf ~/Library/Fonts/</pre><button class="copy" type="button" data-copy="c-mac">Copy</button></div>
+    <p class="muted" style="font-size:14px">If the family doesn't show up in Font Book or your apps, remove the four files from ~/Library/Fonts and install them again, then restart the app.</p>
+  </div>
+  <div class="panel" role="tabpanel" id="p-linux" aria-labelledby="t-linux" hidden>
+    <p>Copy the fonts into your user font folder and refresh the font cache:</p>
+    <div class="cmd"><pre id="c-linux">mkdir -p ~/.local/share/fonts/NatewaveSans
+cp NatewaveSans/*.ttf ~/.local/share/fonts/NatewaveSans/
+fc-cache -f
+fc-list : family | grep "Natewave Sans"</pre><button class="copy" type="button" data-copy="c-linux">Copy</button></div>
+  </div>
+  <div class="panel" role="tabpanel" id="p-win" aria-labelledby="t-win" hidden>
+    <p>Unzip the download, select the four .ttf files in File Explorer, right-click and choose <b>Install</b> (or <b>Install for all users</b>). On a standard-density screen a hinted TTF renders crisper; see the note above.</p>
+  </div>
+  <div class="panel" role="tabpanel" id="p-src" aria-labelledby="t-src" hidden>
+    <p>Build it yourself from the repository root with Node.js and Git (add <code>ttfautohint</code> for hinted targets). One build plan holds both families:</p>
+    <div class="cmd"><pre id="c-src">git clone --depth 1 --branch v34.4.0 https://github.com/be5invis/Iosevka.git
+cp private-build-plans.toml Iosevka/
+cd Iosevka &amp;&amp; npm install
+npm run build -- --jCmd=4 webfont-unhinted::NatewaveSans</pre><button class="copy" type="button" data-copy="c-src">Copy</button></div>
+  </div>
+
+  <h3 class="sub">Apps</h3>
+  <table class="cfg">
+    <tr><th>CSS</th><td><pre id="e-css">font-family: "Natewave Sans", system-ui, sans-serif;</pre></td><td class="c"><button class="copy" type="button" data-copy="e-css">Copy</button></td></tr>
+    <tr><th>VS Code Markdown preview</th><td><pre id="e-vsc">"markdown.preview.fontFamily": "'Natewave Sans', sans-serif"</pre></td><td class="c"><button class="copy" type="button" data-copy="e-vsc">Copy</button></td></tr>
+    <tr><th>Obsidian</th><td>Settings › Appearance › Font: Natewave Sans as interface and text font, Natewave Mono as monospace font</td><td class="c"></td></tr>
+    <tr><th>GNOME</th><td><pre id="e-gno">gsettings set org.gnome.desktop.interface font-name 'Natewave Sans 11'
+gsettings set org.gnome.desktop.interface monospace-font-name 'Natewave Mono 11'</pre></td><td class="c"><button class="copy" type="button" data-copy="e-gno">Copy</button></td></tr>
+  </table>
+  <p class="muted" style="font-size:14px;margin-top:12px">For editors and terminals, use <a href="../#install">Natewave Mono</a>: code needs fixed pitch.</p>
+</section>
+</main>
+
+<footer class="foot wrap">
+  <div class="big">Il1 0O rn m cl d</div>
+  <div>
+    <p>Natewave Sans is a Modified Version of <a href="https://github.com/be5invis/Iosevka">Iosevka</a> by Renzhi Li (Belleve Invis), released under the <a href="../fonts/OFL.txt">SIL Open Font License 1.1</a>. You can use, modify and redistribute it freely; you can't sell the font by itself.</p>
+    <p>This page is set in Natewave Sans, with code in Natewave Mono, and loads nothing from other sites.</p>
+  </div>
+  <div>
+    <p><a href="../">Natewave Mono, the coding font</a><br><a data-repo-href="" href="https://github.com/natewave/natewave-mono">Source and build plan</a><br><a data-repo-href="/releases" href="https://github.com/natewave/natewave-mono/releases">Releases</a><br><a href="#top">Back to top ↑</a></p>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+/* theme (shared with the Mono page) ---------------------------------------- */
+function setTheme(t) {
+  document.documentElement.dataset.theme = t;
+  try { localStorage.setItem("nw-theme", t); } catch (e) {}
+  const m = document.querySelector('meta[name="theme-color"]');
+  if (m) m.content = t === "dark" ? "#101115" : "#f2f0e9";
+}
+$("#themeBtn").addEventListener("click", () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
+
+/* repository links: data-repo, else owner/repo from a *.github.io URL -------- */
+(function () {
+  let repo = document.body.dataset.repo || "";
+  const m = location.hostname.match(/^([^.]+)\.github\.io$/);
+  const first = location.pathname.split("/").filter(Boolean)[0];
+  if (!repo && m && first) repo = m[1] + "/" + first;
+  if (!repo) return;
+  $$("[data-repo-href]").forEach((a) => { a.href = "https://github.com/" + repo + a.dataset.repoHref; });
+})();
+
+/* toast + copy --------------------------------------------------------------- */
+let toastTimer;
+function toast(msg) {
+  const t = $("#toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 1400);
+}
+async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); toast("Copied"); }
+  catch (e) { toast("Copy failed: select and copy manually"); }
+}
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("[data-copy]");
+  if (b) copyText($("#" + b.dataset.copy).textContent);
+});
+
+/* segmented controls ---------------------------------------------------------- */
+function seg(name, onChange) {
+  const g = document.querySelector('.seg[data-ctl="' + name + '"]');
+  g.addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    $$("button", g).forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    onChange(b.dataset.v);
+  });
+}
+
+/* type tester ------------------------------------------------------------------- */
+// No whitespace between tags: the tester keeps typed line breaks (white-space: pre-wrap).
+const SAMPLES = {
+  prose: "<p>Most of what we know about legible type comes from studies of people reading prose. The eyes move along a line in short jumps and take in a few letters at each stop, so anything that makes a line shorter, such as proportional spacing, means fewer jumps for the same words.</p><p>That advantage has a limit. Near the smallest size you can read, letters start to crowd each other and the even rhythm of a monospace wins again. Natewave Sans is for the sizes you read comfortably; for anything smaller, there is Natewave Mono.</p>",
+  docs: "<p><b>Install.</b> Unzip <code>NatewaveSans-TTF-Unhinted.zip</code> and copy the four files to <code>~/Library/Fonts</code>. On Linux, run <code>fc-cache -f</code> afterwards.</p><p><b>Pair the families.</b> Set text in Natewave Sans and code in Natewave Mono. Both have a 545-unit x-height, so <code>code</code> needs no size correction: <code>font-size: 1em</code> is right.</p><p><b>IDs stay readable.</b> Licence key <code>N0W4-VE1L-I0O9</code>, build 1.0.2, ticket #4071.</p>",
+  ui: "<p><b>Settings</b> · Account · Notifications · Billing</p><p>Signed in as ilse.loewen@example.com. Last sign-in: 9:41, 4 November 2026.</p><p>Storage: 12.8 GB of 15 GB used (85%) · 1,024 files · 3 shared folders.</p><p>Couldn’t sync “Q3 Illustrations”. Check your connection, then try again.</p><p><b>Retry</b> · Dismiss · Copy error ID 0x1F0O</p>",
+};
+const T = { size: 18, lead: 1.5, measure: 66, weight: "400", style: "normal", figures: "lining", scheme: "paper", sample: "prose", cmp: false };
+const tText = $("#tText"), tCmp = $("#tCmpText");
+try { tText.contentEditable = "plaintext-only"; } catch (e) { tText.contentEditable = "true"; }
+function renderSample() {
+  tText.innerHTML = SAMPLES[T.sample];
+  tCmp.innerHTML = tText.innerHTML;
+}
+function applyTester() {
+  for (const el of [tText, tCmp]) {
+    el.style.fontSize = T.size + "px";
+    el.style.lineHeight = String(T.lead);
+    el.style.fontWeight = T.weight;
+    el.style.fontStyle = T.style;
+    el.style.fontVariantNumeric = T.figures === "oldstyle" ? "oldstyle-nums" : "normal";
+    // Line length in Natewave Sans "ch" (0.6 em), applied as em so both panes get the same width.
+    el.style.maxWidth = "calc(" + (T.measure * 0.6).toFixed(2) + "em + 48px)";
+  }
+  for (const p of [$("#tPaneA"), $("#tPaneB")]) p.className = p.className.replace(/\bs-\w+/, "s-" + T.scheme);
+  $("#tPanes").classList.toggle("split", T.cmp);
+  $("#tPaneB").hidden = !T.cmp;
+  $("#tSizeOut").textContent = T.size + " px";
+  $("#tLeadOut").textContent = T.lead.toFixed(2);
+  $("#tMeasureOut").textContent = T.measure + " ch";
+}
+$("#tSize").addEventListener("input", (e) => { T.size = +e.target.value; applyTester(); });
+$("#tLead").addEventListener("input", (e) => { T.lead = +e.target.value; applyTester(); });
+$("#tMeasure").addEventListener("input", (e) => { T.measure = +e.target.value; applyTester(); });
+$("#tCmp").addEventListener("change", (e) => { T.cmp = e.target.checked; tCmp.innerHTML = tText.innerHTML; applyTester(); });
+seg("weight", (v) => { T.weight = v; applyTester(); });
+seg("style", (v) => { T.style = v; applyTester(); });
+seg("figures", (v) => { T.figures = v; applyTester(); });
+seg("scheme", (v) => { T.scheme = v; applyTester(); });
+seg("sample", (v) => { T.sample = v; renderSample(); });
+tText.addEventListener("input", () => { if (T.cmp) tCmp.innerHTML = tText.innerHTML; });
+
+/* nav: highlight the section in view --------------------------------------- */
+(function () {
+  const links = new Map($$(".nav a").map((a) => [a.getAttribute("href").slice(1), a]));
+  const io = new IntersectionObserver((entries) => {
+    for (const en of entries) {
+      if (!en.isIntersecting) continue;
+      links.forEach((a) => a.classList.remove("on"));
+      const a = links.get(en.target.id); if (a) a.classList.add("on");
+    }
+  }, { rootMargin: "-35% 0px -60% 0px" });
+  links.forEach((_, id) => { const s = document.getElementById(id); if (s) io.observe(s); });
+})();
+
+/* 11 px loupe ------------------------------------------------------------------- */
+const LOUPE = ["Il1| 0O rn m cl d", "Illinois ill 1ll", "The quick brown fox", "0O8 B3 5S 9gq 2Z"];
+const L = { px: 11, zoom: innerWidth < 760 ? 5 : 7, pol: "light" };
+$$('.seg[data-ctl="lzoom"] button').forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.v === L.zoom)));
+// Proportional text: re-wrap the sample groups by measured width so the magnified lines fit.
+function loupeLines(c, maxW) {
+  const out = [];
+  for (const line of LOUPE) {
+    let cur = "";
+    for (const tok of line.split(" ")) {
+      const next = cur ? cur + " " + tok : tok;
+      if (cur && c.measureText(next).width > maxW) { out.push(cur); cur = tok; } else cur = next;
+    }
+    if (cur) out.push(cur);
+  }
+  return out;
+}
+async function drawLoupe() {
+  const font = "400 " + L.px + 'px "Natewave Sans"';
+  try { await document.fonts.load(font, "Il1"); } catch (e) {}
+  const pad = 4, lh = Math.round(L.px * 1.35);
+  const avail = Math.max(160, $(".loupe-view").clientWidth - 32);
+  const off = document.createElement("canvas");
+  let c = off.getContext("2d");
+  c.font = font;
+  const lines = loupeLines(c, Math.max(L.px * 3, avail / L.zoom - pad * 2));
+  const W = Math.ceil(Math.max(...lines.map((s) => c.measureText(s).width))) + pad * 2, H = lh * lines.length + pad * 2;
+  off.width = W; off.height = H;
+  c = off.getContext("2d");
+  const dark = L.pol === "dark";
+  c.fillStyle = dark ? "#0f1117" : "#fbfaf6"; c.fillRect(0, 0, W, H);
+  c.fillStyle = dark ? "#e8e6df" : "#15161a"; c.font = font; c.textBaseline = "alphabetic";
+  lines.forEach((t, i) => c.fillText(t, pad, pad + i * lh + Math.round(L.px * 1.015)));
+  const out = $("#loupe");
+  out.width = W * L.zoom; out.height = H * L.zoom;
+  out.style.width = W * L.zoom + "px"; out.style.height = H * L.zoom + "px";
+  const o = out.getContext("2d");
+  o.imageSmoothingEnabled = false;
+  o.drawImage(off, 0, 0, W * L.zoom, H * L.zoom);
+  o.strokeStyle = dark ? "rgba(255,255,255,.07)" : "rgba(0,0,0,.07)";
+  o.lineWidth = 1; o.beginPath();
+  for (let x = 0; x <= W; x++) { o.moveTo(x * L.zoom + 0.5, 0); o.lineTo(x * L.zoom + 0.5, H * L.zoom); }
+  for (let y = 0; y <= H; y++) { o.moveTo(0, y * L.zoom + 0.5); o.lineTo(W * L.zoom, y * L.zoom + 0.5); }
+  o.stroke();
+  $("#lPx").textContent = L.px;
+  $("#lSizeOut").textContent = L.px + " px";
+}
+$("#lSize").addEventListener("input", (e) => { L.px = +e.target.value; drawLoupe(); });
+seg("lpol", (v) => { L.pol = v; drawLoupe(); });
+seg("lzoom", (v) => { L.zoom = +v; drawLoupe(); });
+
+/* widths: measured from the font, so the ladder always matches the build ----- */
+const FRAC = (u) => (u % 100 === 0 ? u / 100 + "/6" : u / 50 + "/12");
+async function buildLadder() {
+  try { await document.fonts.load('400 100px "Natewave Sans"', "Mm"); } catch (e) {}
+  const c = document.createElement("canvas").getContext("2d");
+  c.font = '400 100px "Natewave Sans"';
+  const units = (s) => Math.round(c.measureText(s).width * 10);
+  const groups = new Map();
+  for (let cp = 32; cp <= 126; cp++) {
+    const ch = String.fromCharCode(cp), u = units(ch);
+    if (!groups.has(u)) groups.set(u, []);
+    groups.get(u).push(ch);
+  }
+  const rows = [...groups.entries()].sort((a, b) => a[0] - b[0]);
+  const max = Math.max(...rows.map((r) => r[0]));
+  const box = $("#ladder");
+  box.textContent = "";
+  for (const [u, chars] of rows) {
+    const space = chars.includes(" "), glyphs = chars.length - (space ? 1 : 0);
+    const what = [glyphs ? glyphs + (glyphs === 1 ? " glyph" : " glyphs") : "", space ? "word space" : ""].filter(Boolean).join(" + ");
+    const row = document.createElement("div");
+    row.className = "rung" + (space ? " space" : "");
+    row.dataset.units = u;
+    row.innerHTML = '<div class="w"><b>' + u + "</b>" + FRAC(u) + " · " + what + "</div>" +
+      '<div><div class="bar" style="width:' + (u / max * 100).toFixed(1) + '%"></div><div class="gs">' +
+      chars.map((ch) => (ch === " " ? '<span class="gb" title="space"> </span>' : '<span class="gb">' + esc(ch) + "</span>")).join("") + "</div></div>";
+    box.append(row);
+  }
+}
+
+/* same paragraph, two pitches --------------------------------------------------- */
+function measurePitch() {
+  const text = $("#pS").textContent;
+  const c = document.createElement("canvas").getContext("2d");
+  c.font = '400 100px "Natewave Mono"';
+  const wm = c.measureText(text).width;
+  c.font = '400 100px "Natewave Sans"';
+  const ws = c.measureText(text).width;
+  $("#pitchPct").textContent = Math.round((1 - ws / wm) * 100) + "%";
+  for (const id of ["pM", "pS"]) {
+    const el = $("#" + id), lh = parseFloat(getComputedStyle(el).lineHeight);
+    $("#" + id + "n").textContent = Math.round(el.getBoundingClientRect().height / lh) + " lines";
+  }
+}
+
+/* shared metrics (SVG in font units: 1 unit = 1/1000 em) ----------------------- */
+const NS = "http://www.w3.org/2000/svg";
+function el(tag, attrs, text) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (text != null) e.textContent = text;
+  return e;
+}
+const narrowMQ = matchMedia("(max-width: 760px)");
+function drawPair() {
+  const svg = $("#pair"), narrow = narrowMQ.matches;
+  const xs = 0, xm = 2700, W = 5100; // "Hxgl" is 2,200 units wide in the Sans and 2,400 in the Mono
+  const LM = narrow ? 80 : 900, RM = narrow ? 80 : 1050;
+  svg.textContent = "";
+  svg.setAttribute("viewBox", -LM + " -1090 " + (W + LM + RM) + " 1640");
+  const M = [["ascender", 780, "L", -20], ["cap height", 730, "R", 64], ["x-height", 545, "L", -20], ["baseline", 0, "L", -20], ["descender", -235, "R", 64]];
+  for (const [name, v, side, dy] of M) {
+    const y = -v, x = name === "x-height";
+    svg.append(el("line", { x1: -60, x2: W + 60, y1: y, y2: y, class: x ? "ln ln-x" : "ln" }));
+    if (narrow) continue;
+    const label = name + " " + (v < 0 ? "−" + -v : v), cls = x ? "lb lb-x" : "lb";
+    svg.append(side === "L" ? el("text", { x: -90, y: y + dy, "text-anchor": "end", class: cls }, label) : el("text", { x: W + 90, y: y + dy, class: cls }, label));
+  }
+  svg.append(el("text", { x: xs, y: 0, class: "gl-s", "font-size": 1000 }, "Hxgl"));
+  svg.append(el("text", { x: xm, y: 0, class: "gl-m", "font-size": 1000 }, "Hxgl"));
+  svg.append(el("text", { x: xs, y: 480, class: "nm", "font-size": narrow ? 230 : 110 }, "Natewave Sans"));
+  svg.append(el("text", { x: xm, y: 480, class: "nm", "font-size": narrow ? 230 : 110 }, "Natewave Mono"));
+}
+narrowMQ.addEventListener("change", drawPair);
+$("#dShow").addEventListener("change", (e) => $("#docs").classList.toggle("show", e.target.checked));
+
+/* character set ----------------------------------------------------------------- */
+const CHARSET = [{"name":"Basic Latin","count":94,"runs":[[33,126]]},{"name":"Latin-1","count":94,"runs":[[161,172],[174,255]]},{"name":"Latin Extended-A","count":128,"runs":[[256,383]]},{"name":"Latin Extended-B","count":208,"runs":[[384,591]]},{"name":"Latin Extended Additional","count":256,"runs":[[7680,7935]]},{"name":"Greek","count":121,"runs":[[880,887],[890,895],[900,906],[908,908],[910,929],[931,993],[1008,1023]]},{"name":"Cyrillic","count":256,"runs":[[1024,1279]]},{"name":"Punctuation","count":74,"runs":[[8208,8233],[8239,8286]]},{"name":"Super- and subscripts","count":42,"runs":[[8304,8305],[8308,8334],[8336,8348]]},{"name":"Currency","count":27,"runs":[[8353,8353],[8355,8367],[8369,8373],[8376,8378],[8380,8384]]},{"name":"Letterlike","count":61,"runs":[[8448,8451],[8453,8457],[8460,8463],[8465,8465],[8467,8467],[8469,8474],[8476,8477],[8480,8482],[8484,8484],[8486,8491],[8493,8494],[8498,8498],[8501,8521],[8523,8523],[8525,8527]]},{"name":"Number forms","count":60,"runs":[[8528,8587]]},{"name":"Arrows","count":112,"runs":[[8592,8703]]},{"name":"Math operators","count":256,"runs":[[8704,8959]]},{"name":"Geometric shapes","count":96,"runs":[[9632,9727]]}];
+const hex = (cp) => "U+" + cp.toString(16).toUpperCase().padStart(4, "0");
+function inspect(cp) {
+  $("#iBig").textContent = String.fromCodePoint(cp);
+  $("#iCp").textContent = hex(cp);
+  $("#iHint").textContent = "Decimal " + cp + " · HTML &#x" + cp.toString(16).toUpperCase() + "; · click to copy";
+}
+function showCat(idx) {
+  $$("#chips button").forEach((b, j) => b.setAttribute("aria-pressed", String(j === idx)));
+  const grid = $("#csGrid"), frag = document.createDocumentFragment();
+  grid.textContent = "";
+  for (const [a, z] of CHARSET[idx].runs) for (let cp = a; cp <= z; cp++) {
+    const b = document.createElement("button");
+    b.type = "button"; b.textContent = String.fromCodePoint(cp); b.dataset.cp = cp; b.title = hex(cp);
+    frag.append(b);
+  }
+  grid.append(frag);
+  inspect(CHARSET[idx].runs[0][0]);
+}
+function buildCharset() {
+  const chips = $("#chips");
+  CHARSET.forEach((c, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.innerHTML = esc(c.name) + "<span>" + c.count + "</span>";
+    b.addEventListener("click", () => showCat(i));
+    chips.append(b);
+  });
+  const total = CHARSET.reduce((a, c) => a + c.count, 0);
+  $("#csCount").textContent = total.toLocaleString("en") + " shown of 7,564 code points";
+  const grid = $("#csGrid");
+  const over = (e) => { const b = e.target.closest("button[data-cp]"); if (b) inspect(+b.dataset.cp); };
+  grid.addEventListener("mouseover", over);
+  grid.addEventListener("focusin", over);
+  grid.addEventListener("click", (e) => { const b = e.target.closest("button[data-cp]"); if (b) copyText(String.fromCodePoint(+b.dataset.cp)); });
+  showCat(0);
+}
+
+/* install tabs ------------------------------------------------------------------- */
+(function () {
+  const tabs = $$('.tabs [role="tab"]');
+  const select = (t) => {
+    tabs.forEach((x) => { const on = x === t; x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute("aria-controls")).hidden = !on; });
+    t.focus();
+  };
+  tabs.forEach((t, i) => {
+    t.tabIndex = i === 0 ? 0 : -1;
+    t.addEventListener("click", () => select(t));
+    t.addEventListener("keydown", (e) => {
+      // preventDefault: otherwise Safari moves a leftover text caret and refocuses the type tester
+      if (e.key === "ArrowRight") { e.preventDefault(); select(tabs[(i + 1) % tabs.length]); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); select(tabs[(i - 1 + tabs.length) % tabs.length]); }
+    });
+  });
+})();
+
+/* start ---------------------------------------------------------------------------- */
+renderSample();
+applyTester();
+drawPair();
+buildCharset();
+drawLoupe();
+buildLadder();
+measurePitch();
+document.fonts.ready.then(() => { drawLoupe(); buildLadder(); measurePitch(); });
+let resizeTimer, lastW = innerWidth;
+addEventListener("resize", () => {
+  if (innerWidth === lastW) return; // ignore mobile address-bar height changes
+  lastW = innerWidth; clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => { drawLoupe(); measurePitch(); }, 150);
+});
+</script>
+</body>
+</html>

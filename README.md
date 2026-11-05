@@ -7,8 +7,10 @@ Natewave Mono is a monospaced coding font. Its choices trace to type-design prac
 - **Weight:** a slightly heavier Regular for small screen sizes.
 - **Operators:** they share one axis, so `->`, `=>`, `<=` and `!=` read cleanly without ligatures. Ligatures are off by default and available on request.
 
+**Natewave Sans** is its proportional companion for prose and interfaces. It has the same letters, x-height and research, built from the same plan file; see [Natewave Sans](#natewave-sans).
+
 ## Build
-The font is built from [Iosevka](https://github.com/be5invis/Iosevka) `v34.4.0` with one build plan, [`private-build-plans.toml`](private-build-plans.toml).
+Both families are built from [Iosevka](https://github.com/be5invis/Iosevka) `v34.4.0` with one build-plan file, [`private-build-plans.toml`](private-build-plans.toml), which holds the `NatewaveMono` and `NatewaveSans` plans.
 
 Run these from the repository root in a POSIX shell (macOS or Linux terminal, WSL, or Git Bash):
 
@@ -16,7 +18,7 @@ Run these from the repository root in a POSIX shell (macOS or Linux terminal, WS
 git clone --depth 1 --branch v34.4.0 https://github.com/be5invis/Iosevka.git
 cp private-build-plans.toml Iosevka/
 cd Iosevka && npm install
-npm run build -- --jCmd=4 webfont-unhinted::NatewaveMono
+npm run build -- --jCmd=4 webfont-unhinted::NatewaveMono webfont-unhinted::NatewaveSans
 ```
 
 `Iosevka/` is a build checkout; [`.gitignore`](.gitignore) keeps it out of commits.
@@ -34,7 +36,7 @@ npm run build -- --jCmd=4 webfont-unhinted::NatewaveMono
 
 ### Build targets
 
-Replace the target in the last command with one of these:
+Replace the targets in the last command with any of these. For Natewave Sans, use `NatewaveSans` in place of `NatewaveMono`; one command can list several targets.
 
 | Target | Produces | Needs `ttfautohint` |
 |---|---|---|
@@ -52,7 +54,7 @@ Replace the target in the last command with one of these:
 
 ### Output
 
-Each folder holds four styles: `NatewaveMono-Regular`, `-Italic`, `-Bold` and `-BoldItalic`.
+Each folder holds four styles: `NatewaveMono-Regular`, `-Italic`, `-Bold` and `-BoldItalic`. `Iosevka/dist/NatewaveSans/` has the same layout.
 
 ```text
 Iosevka/dist/NatewaveMono/
@@ -84,6 +86,8 @@ Which build to install:
 
 - **Windows:** open `Iosevka\dist\NatewaveMono\TTF` in File Explorer, select the four `.ttf` files, right-click, and choose **Install** (or **Install for all users**).
 
+Natewave Sans installs the same way, with `NatewaveSans` in the paths. On Linux, check it with `fc-list : family | grep "Natewave Sans"`; it isn't monospace, so `:spacing=mono` won't list it.
+
 Editor (VS Code `settings.json`):
 
 ```json
@@ -101,8 +105,8 @@ font_family Natewave Mono
 ## Release checklist
 
 1. **Pick a release tag**, for example `v1.0.0`. The fonts' internal version stays Iosevka's (`Version 34.4.0`), which records the upstream build.
-2. **Build everything** from the repository root (needs `ttfautohint`): `(cd Iosevka && npm run build -- --jCmd=4 contents::NatewaveMono)`
-3. **Package and publish** from the repository root. Each archive carries Iosevka's licence file as `OFL.txt`:
+2. **Build everything** from the repository root (needs `ttfautohint`): `(cd Iosevka && npm run build -- --jCmd=4 contents::NatewaveMono contents::NatewaveSans)`
+3. **Package and publish** from the repository root. Each archive carries Iosevka's licence file as `OFL.txt`. Before `gh release create`, repeat the `cd`…`zip` lines with `NatewaveSans` in place of `NatewaveMono`:
 
    ```sh
    VERSION=v1.0.0
@@ -126,21 +130,24 @@ font_family Natewave Mono
 
 ## Website
 
-[`docs/index.html`](docs/index.html) is a one-page specimen of the font, set in Natewave Mono itself. Its CSS and JavaScript are inline, and it makes no external requests. GitHub Pages publishes the `docs/` folder of `main` at https://natewave.github.io/natewave-mono/.
+The site has two one-page specimens that link to each other. Their CSS and JavaScript are inline, and they make no external requests. GitHub Pages publishes the `docs/` folder of `main`:
+
+- [`docs/index.html`](docs/index.html), set in Natewave Mono: https://natewave.github.io/natewave-mono/
+- [`docs/sans/index.html`](docs/sans/index.html), set in Natewave Sans with code in Natewave Mono: https://natewave.github.io/natewave-mono/sans/
 
 The site's font files are built locally and committed, so publishing builds nothing:
 
-- `docs/fonts/`: the four WOFF2 files and `OFL.txt`.
-- `docs/download/NatewaveMono-TTF-Unhinted.zip`: the four unhinted TTFs and `OFL.txt` in a `NatewaveMono/` folder, for the Download button.
+- `docs/fonts/`: the four WOFF2 files of each family, and `OFL.txt`.
+- `docs/download/NatewaveMono-TTF-Unhinted.zip` and `NatewaveSans-TTF-Unhinted.zip`: each family's four unhinted TTFs and `OFL.txt` in a folder named after the family, for the Download buttons.
 - `docs/.nojekyll`: tells Pages to serve the files as they are, without Jekyll.
 
-**After changing the build plan:** rebuild (see [Build](#build)), then copy the new fonts into `docs/` and commit them:
+**After changing the build plan:** rebuild both families (see [Build](#build)), then copy the new fonts into `docs/` and commit them:
 
 ```sh
 sh scripts/update-site-fonts.sh
 ```
 
-The script only copies and zips. It stops if the build is missing or `Iosevka/` holds a different plan. Running it again on the same build leaves the files unchanged, so there's nothing new to commit.
+The script only copies and zips. It stops if either family's build is missing or `Iosevka/` holds a different plan. Running it again on the same build leaves the files unchanged, so there's nothing new to commit.
 
 **One-time setup:** in the repository's **Settings → Pages → Build and deployment**, set **Source** to **Deploy from a branch**, then choose the `main` branch and the `/docs` folder.
 
@@ -181,11 +188,30 @@ Limits of Iosevka `v34.4.0` that the plan can't fix:
 - The tilde sits about 0.08 × x-height below the operator axis.
 - Apertures of `c`, `e` and `s` stay narrower than in Fira Mono or Intel One Mono.
 
+### Natewave Sans
+
+The `NatewaveSans` plan inherits every Natewave Mono choice (glyph variants, weights, widths, slopes) and changes only what a monospace cell forced. The research here applies directly, because most of it tested proportional fonts reading prose.
+
+| Decision | Value | Basis | Evidence |
+|---|---|---|---|
+| Spacing | `quasi-proportional`: letters 4/6 to 9/6 of the 600-unit cell; word space 350 | Proportional pitch was read faster at medium and large sizes, and fixed pitch near the acuity limit (Arditi et al., 1990); normal readers were 5% faster with Times than with Courier (Mansfield et al., 1996) | moderate |
+| Small text | Use Natewave Mono near the smallest readable size and for low vision | Courier gave better reading acuity and a smaller critical print size, and low-vision readers were 10% faster with it (Mansfield et al., 1996) | moderate |
+| Letter spacing | Iosevka's default side-bearings, not the Mono's × 0.9 | Slightly looser letter spacing sped up word recognition (Perea et al., 2011; Perea & Gómez, 2012); the direction of the effect depends on the font's default spacing (Slattery et al., 2016) | moderate |
+| Narrow letters | `i` semi-tailed and `l` tailed; the serifs of `i`, `j` and `J` and the foot of `r` removed | Stroke ends identify letters (Fiset et al., 2008); narrow letters improve when widened (Beier & Larson, 2010); serifs alone don't change legibility (Arditi & Cho, 2005) | moderate |
+| Asterisk | Raised (`hex-high`) | Prose uses `*` as a footnote mark | convention |
+| Shared with Natewave Mono | Vertical metrics, weights, italic, all other glyphs, no default ligatures | Inline code needs no size correction; the evidence in the table above still applies | see above |
+
+Limits of Iosevka `v34.4.0` for a proportional family:
+- No kerning: Iosevka only positions marks, so pairs such as `To`, `AV`, `Ty` and `r,` keep their full gaps.
+- Widths come in sixths of the cell, not letter by letter. Most lowercase letters share 600 units, so `f`, `r` and `t` set looser than in a hand-spaced sans.
+- Apertures of `c`, `e` and `s` are the Mono's.
+
 ### References
 
 Each source was read at least as an abstract by an AI agent.
 
 - Arditi, A., & Cho, J. (2005). Serifs and font legibility. *Vision Research, 45*(23), 2926–2933. https://doi.org/10.1016/j.visres.2005.06.013
+- Arditi, A., Knoblauch, K., & Grunwald, I. (1990). Reading with fixed and variable character pitch. *Journal of the Optical Society of America A, 7*(10), 2011–2015. https://doi.org/10.1364/JOSAA.7.002011
 - Beier, S., & Larson, K. (2010). Design improvements for frequently misrecognized letters. *Information Design Journal, 18*(2), 118–137. https://doi.org/10.1075/idj.18.2.03bei
 - Beier, S., & Oderkerk, C. A. T. (2019). Smaller visual angles show greater benefit of letter boldness than larger visual angles. *Acta Psychologica, 199*, 102904. https://doi.org/10.1016/j.actpsy.2019.102904
 - Beier, S., Oderkerk, C. A. T., Bay, B., & Larsen, M. (2021). Increased letter spacing and greater letter width improve reading acuity in low vision readers. *Information Design Journal, 26*(1), 73–88. https://doi.org/10.1075/idj.19033.bei
@@ -200,6 +226,7 @@ Each source was read at least as an abstract by an AI agent.
 - Larson, K., & Carter, M. (2016). Sitka: A collaboration between type design and science. In M. C. Dyson & C. Y. Suen (Eds.), *Digital fonts and reading* (pp. 37–53). World Scientific. https://doi.org/10.1142/9789814759540_0003
 - Legge, G. E., & Bigelow, C. A. (2011). Does print size matter for reading? A review of findings from vision science and typography. *Journal of Vision, 11*(5), 8. https://doi.org/10.1167/11.5.8
 - Ling, J., & van Schaik, P. (2007). The influence of line spacing and text alignment on visual search of web pages. *Displays, 28*(2), 60–67. https://doi.org/10.1016/j.displa.2007.04.003
+- Mansfield, J. S., Legge, G. E., & Bane, M. C. (1996). Psychophysics of reading. XV: Font effects in normal and low vision. *Investigative Ophthalmology & Visual Science, 37*(8), 1492–1501. https://pubmed.ncbi.nlm.nih.gov/8675391/
 - Minakata, K., & Beier, S. (2021). The effect of font width on eye movements during reading. *Applied Ergonomics, 97*, 103523. https://doi.org/10.1016/j.apergo.2021.103523
 - Minakata, K., & Beier, S. (2022). The dispute about sans serif versus serif fonts: An interaction between the variables of serif and stroke contrast. *Acta Psychologica, 228*, 103623. https://doi.org/10.1016/j.actpsy.2022.103623
 - Oderkerk, C. A. T., & Beier, S. (2022). Fonts of wider letter shapes improve letter recognition in parafovea and periphery. *Ergonomics, 65*(5), 753–761. https://doi.org/10.1080/00140139.2021.1991001
@@ -207,6 +234,8 @@ Each source was read at least as an abstract by an AI agent.
 - Palmén, H., Gilbert, M., & Crossland, D. (2023). How bold can we be? The impact of adjusting font grade on readability in light and dark polarities. In *Proceedings of CHI '23* (pp. 1–11). ACM. https://doi.org/10.1145/3544548.3581552
 - Paterson, D. G., & Tinker, M. A. (1932). Studies of typographical factors influencing speed of reading. VIII. Space between lines or leading. *Journal of Applied Psychology, 16*(4), 388–397. https://doi.org/10.1037/h0074988
 - Pelli, D. G., Tillman, K. A., Freeman, J., Su, M., Berger, T. D., & Majaj, N. J. (2007). Crowding and eccentricity determine reading rate. *Journal of Vision, 7*(2), 20. https://doi.org/10.1167/7.2.20
+- Perea, M., & Gómez, P. (2012). Increasing interletter spacing facilitates encoding of words. *Psychonomic Bulletin & Review, 19*(2), 332–338. https://doi.org/10.3758/s13423-011-0214-6
+- Perea, M., Moret-Tatay, C., & Gómez, P. (2011). The effects of interletter spacing in visual-word recognition. *Acta Psychologica, 137*(3), 345–351. https://doi.org/10.1016/j.actpsy.2011.04.003
 - Piepenbrock, C., Mayr, S., Mund, I., & Buchner, A. (2013). Positive display polarity is advantageous for both younger and older adults. *Ergonomics, 56*(7), 1116–1124. https://doi.org/10.1080/00140139.2013.790485
 - Piepenbrock, C., Mayr, S., & Buchner, A. (2014). Positive display polarity is particularly advantageous for small character sizes. *Human Factors, 56*(5), 942–951. https://doi.org/10.1177/0018720813515509
 - Rello, L., & Baeza-Yates, R. (2013). Good fonts for dyslexia. In *Proceedings of ASSETS '13* (pp. 1–8). ACM. https://doi.org/10.1145/2513383.2513447

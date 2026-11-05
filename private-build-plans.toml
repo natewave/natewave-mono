@@ -1,4 +1,4 @@
-# Natewave Mono: Iosevka v34.4.0 build plan. Rationale and references are in README.md.
+# Natewave Mono and Natewave Sans: Iosevka v34.4.0 build plans. Rationale and references are in README.md.
 
 [buildPlans.NatewaveMono]
 family = "Natewave Mono"
@@ -113,3 +113,47 @@ leading = 1350                        # 1.35 em, ~2.5 x-heights (Paterson & Tink
 sb = "default_sb * 0.9"               # wider letters, same pitch (Slattery et al. 2016)
 dotSize = "default_dotSize * 1.1"     # larger i/j dots (Bernard et al. 2016)
 periodSize = "default_periodSize * 1.15"  # visible . , : ; (convention: Input, Source Code Pro)
+
+# Natewave Sans: the proportional companion. It inherits every Natewave Mono choice and changes only
+# what a monospace cell forced, so the two families share letterforms and vertical metrics.
+
+[buildPlans.NatewaveSans]
+family = "Natewave Sans"
+spacing = "quasi-proportional" # widths in sixths of 600; proportional pitch reads faster at text sizes (Arditi et al. 1990)
+serifs = "sans"
+noCvSs = false                 # keep cv##/ss## alternates; best font varies per reader (Wallace et al. 2022)
+
+[buildPlans.NatewaveSans.variants]
+inherits = "buildPlans.NatewaveMono"  # all Mono glyph choices, including the italic a and f
+
+[buildPlans.NatewaveSans.variants.design]
+# Serifs that only filled the cell go; each narrow letter keeps its identifying stroke end.
+i = "semi-tailed"              # tail keeps i wider than a bare stroke (Beier & Larson 2010)
+j = "serifless"
+l = "tailed"                   # distinct terminal (Fiset et al. 2008); unlike I, 1 and |
+r = "serifless"                # no foot: there's no cell to fill
+capital-j = "serifless"
+asterisk = "hex-high"          # prose uses * as a footnote mark, so it sits high (convention)
+
+[buildPlans.NatewaveSans.ligations]
+enables = []                   # no ligatures by default; dlig stays opt-in
+
+[buildPlans.NatewaveSans.weights]
+inherits = "buildPlans.NatewaveMono"  # Regular 450, Bold 700
+
+[buildPlans.NatewaveSans.widths]
+inherits = "buildPlans.NatewaveMono"  # base width 600, as in Iosevka Aile
+
+[buildPlans.NatewaveSans.slopes]
+inherits = "buildPlans.NatewaveMono"  # upright and 9.4° italic
+
+[buildPlans.NatewaveSans.metricOverride]
+# The Mono's vertical metrics, so inline code lines up with text. The Mono's narrower side-bearings
+# (sb × 0.9) aren't copied: they suited fixed pitch (Slattery et al. 2016), and proportional text
+# reads better with slightly looser letter spacing (Perea et al. 2011).
+xHeight = 545
+cap = 730
+ascender = 780
+leading = 1350
+dotSize = "default_dotSize * 1.1"
+periodSize = "default_periodSize * 1.15"
